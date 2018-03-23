@@ -562,7 +562,7 @@ class Zend_Form_Element_FileTest_MockAdapter extends Zend_File_Transfer_Adapter_
 
     public function __construct()
     {
-        $testfile = dirname(__FILE__) . '/../../File/Transfer/Adapter/_files/test.txt';
+        $testfile = dirname(__FILE__) . '/../_files/test.txt';
         $this->_files = array(
             'foo' => array(
                 'name'       => 'foo.jpg',

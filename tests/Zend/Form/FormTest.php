@@ -100,6 +100,9 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('put', $form->getMethod());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetOptionsSkipsCallsToSetOptionsAndSetConfig()
     {
         $options = $this->getOptions();
@@ -109,6 +112,9 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->form->setOptions($options);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetOptionsSkipsSettingAccessorsRequiringObjectsWhenNonObjectPassed()
     {
         $options = $this->getOptions();
@@ -358,6 +364,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-3250
+     * @doesNotPerformAssertions
      */
     public function testDisplayGroupOrderInConfigShouldNotMatter()
     {
@@ -3462,6 +3469,9 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertSame($expected, $received);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRemovingFormItemsShouldNotRaiseExceptionsDuringIteration()
     {
         $this->setupElements();
@@ -3499,6 +3509,9 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testClearingAttachedItemsShouldNotCauseIterationToRaiseExceptions()
     {
         $form = new Zend_Form();

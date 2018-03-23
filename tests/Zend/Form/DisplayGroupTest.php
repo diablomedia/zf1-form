@@ -511,6 +511,9 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
         $this->assertSame(array('b', 'c', 'a'), $order);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRemovingElementsShouldNotRaiseExceptionsDuringIteration()
     {
         $this->setupIteratorElements();
@@ -555,6 +558,9 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('foobar', $this->group->getAttrib('class'));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetOptionsOmitsAccessorsRequiringObjectsOrMultipleParams()
     {
         $options = $this->getOptions();

@@ -56,30 +56,41 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         return $view;
     }
 
+    public function testConstructorDoesNotAcceptIntegerArgument()
+    {
+        $this->expectException(Zend_Form_Exception::class);
+        $element = new Zend_Form_Element(1);
+    }
+
+    public function testConstructorDoesNotAcceptBooleanArgument()
+    {
+        $this->expectException(Zend_Form_Exception::class);
+        $element = new Zend_Form_Element(true);
+    }
+
+    public function testConstructorArgumentMustHaveNameElement()
+    {
+        $config = array('foo' => 'bar');
+        $this->expectException(Zend_Form_Exception::class);
+        $element = new Zend_Form_Element($config);
+    }
+
+    public function testConstructorArgumentMustHaveNameElementWhenZendConfig()
+    {
+        $config = new Zend_Config(array('foo' => 'bar'));
+        $this->expectException(Zend_Form_Exception::class);
+        $element = new Zend_Form_Element($config);
+    }
+
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorRequiresMinimallyElementName()
     {
-        try {
-            $element = new Zend_Form_Element(1);
-            $this->fail('Zend_Form_Element constructor should not accept integer argument');
-        } catch (Zend_Form_Exception $e) {
-        }
-        try {
-            $element = new Zend_Form_Element(true);
-            $this->fail('Zend_Form_Element constructor should not accept boolean argument');
-        } catch (Zend_Form_Exception $e) {
-        }
-
         try {
             $element = new Zend_Form_Element('foo');
         } catch (Exception $e) {
             $this->fail('Zend_Form_Element constructor should accept String values');
-        }
-
-        $config = array('foo' => 'bar');
-        try {
-            $element = new Zend_Form_Element($config);
-            $this->fail('Zend_Form_Element constructor requires array with name element');
-        } catch (Zend_Form_Exception $e) {
         }
 
         $config = array('name' => 'bar');
@@ -87,13 +98,6 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
             $element = new Zend_Form_Element($config);
         } catch (Zend_Form_Exception $e) {
             $this->fail('Zend_Form_Element constructor should accept array with name element');
-        }
-
-        $config = new Zend_Config(array('foo' => 'bar'));
-        try {
-            $element = new Zend_Form_Element($config);
-            $this->fail('Zend_Form_Element constructor requires Zend_Config object with name element');
-        } catch (Zend_Form_Exception $e) {
         }
 
         $config = new Zend_Config(array('name' => 'bar'));
@@ -1016,6 +1020,9 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCanValidateElement()
     {
         $this->element->addValidator(new Zend_Validate_NotEmpty())
@@ -1632,6 +1639,9 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('bat', $this->element->baz);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetOptionsSkipsCallsToSetOptionsAndSetConfig()
     {
         $options = $this->getOptions();
@@ -1641,6 +1651,9 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->element->setOptions($options);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetOptionsSkipsSettingAccessorsRequiringObjectsWhenNoObjectPresent()
     {
         $options = $this->getOptions();

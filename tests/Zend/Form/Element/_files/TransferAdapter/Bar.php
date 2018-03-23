@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+namespace Zend\Form\Element\FileTest\Adapter;
 
 /**
  * @category   Zend
