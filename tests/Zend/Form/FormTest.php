@@ -20,17 +20,6 @@
  * @version    $Id$
  */
 
-require_once 'Zend/Form.php';
-
-require_once 'Zend/Controller/Action/HelperBroker.php';
-require_once 'Zend/Form/Decorator/Form.php';
-require_once 'Zend/Form/DisplayGroup.php';
-require_once 'Zend/Form/Element.php';
-require_once 'Zend/Form/Element/Text.php';
-require_once 'Zend/Form/Element/File.php';
-require_once 'Zend/Form/SubForm.php';
-require_once 'Zend/Translate.php';
-require_once 'Zend/View.php';
 
 /**
  * @category   Zend
@@ -3321,7 +3310,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanSetTranslator()
     {
-        require_once 'Zend/Translate/Adapter/Array.php';
         $translator = new Zend_Translate('array', array('foo' => 'bar'));
         $this->form->setTranslator($translator);
         $received = $this->form->getTranslator($translator);
@@ -4150,8 +4138,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
     {
         $data = array('valid' => 1234, 'invalid' => 'invalid', 'noElement' => 'noElement');
 
-        require_once "Zend/Validate/Int.php";
-
         $validElement = new Zend_Form_Element("valid");
         $validElement->addValidator(new Zend_Validate_Int());
         $this->form->addElement($validElement);
@@ -4169,8 +4155,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
     public function testGetValidSubFormValues()
     {
         $data = array('sub' => array('valid' => 1234, 'invalid' => 'invalid', 'noElement' => 'noElement'));
-
-        require_once "Zend/Validate/Int.php";
 
         $subForm = new Zend_Form_SubForm();
         $validElement = new Zend_Form_Element("valid");

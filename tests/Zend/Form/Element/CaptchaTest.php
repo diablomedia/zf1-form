@@ -20,14 +20,6 @@
  * @version    $Id$
  */
 
-/** Zend_Form_Element_Captcha */
-require_once 'Zend/Form/Element/Captcha.php';
-
-/** Zend_Captcha_Dumb */
-require_once 'Zend/Captcha/Dumb.php';
-
-/** Zend_Captcha_ReCaptcha */
-require_once 'Zend/Captcha/ReCaptcha.php';
 
 /**
  * @category   Zend
@@ -121,8 +113,6 @@ class Zend_Form_Element_CaptchaTest extends PHPUnit\Framework\TestCase
      */
     public function testCaptchaShouldRenderFullyQualifiedElementName()
     {
-        require_once 'Zend/Form.php';
-        require_once 'Zend/View.php';
         $form = new Zend_Form();
         $form->addElement($this->element)
              ->setElementsBelongTo('bar');
@@ -171,7 +161,6 @@ class Zend_Form_Element_CaptchaTest extends PHPUnit\Framework\TestCase
      */
     public function testHelperDoesNotShowUpInAttribs()
     {
-        require_once 'Zend/View.php';
         $this->assertArrayNotHasKey('helper', $this->element->getAttribs());
     }
 

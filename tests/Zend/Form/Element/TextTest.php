@@ -20,7 +20,6 @@
  * @version    $Id$
  */
 
-require_once 'Zend/Form/Element/Text.php';
 
 /**
  * Test class for Zend_Form_Element_Text

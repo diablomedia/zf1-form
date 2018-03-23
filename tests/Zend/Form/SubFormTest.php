@@ -20,11 +20,6 @@
  * @version    $Id$
  */
 
-// error_reporting(E_ALL);
-
-require_once 'Zend/Form/SubForm.php';
-require_once 'Zend/View.php';
-require_once 'Zend/Version.php';
 
 /**
  * @category   Zend

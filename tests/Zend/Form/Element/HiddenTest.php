@@ -20,7 +20,6 @@
  * @version    $Id$
  */
 
-require_once 'Zend/Form/Element/Hidden.php';
 
 /**
  * Test class for Zend_Form_Element_Hidden

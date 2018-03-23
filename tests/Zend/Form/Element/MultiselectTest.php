@@ -20,8 +20,6 @@
  * @version    $Id$
  */
 
-require_once 'Zend/Form/Element/Multiselect.php';
-require_once 'Zend/Translate.php';
 
 /**
  * Test class for Zend_Form_Element_Multiselect
@@ -63,7 +61,6 @@ class Zend_Form_Element_MultiselectTest extends PHPUnit\Framework\TestCase
 
     public function getView()
     {
-        require_once 'Zend/View.php';
         $view = new Zend_View();
         $view->addHelperPath(dirname(__FILE__) . '/../../../../library/Zend/View/Helper/');
         return $view;
@@ -210,7 +207,6 @@ class Zend_Form_Element_MultiselectTest extends PHPUnit\Framework\TestCase
             'ThisShouldNotShow'   => 'Foo Value',
             'ThisShouldNeverShow' => 'Bar Value'
         );
-        require_once 'Zend/Translate.php';
         $translate = new Zend_Translate('array', $translations, 'en');
         $translate->setLocale('en');
 
@@ -282,7 +278,6 @@ class Zend_Form_Element_MultiselectTest extends PHPUnit\Framework\TestCase
             'ThisShouldNotShow'   => 'Foo Value',
             'ThisShouldNeverShow' => 'Bar Value'
         );
-        require_once 'Zend/Translate.php';
         $translate = new Zend_Translate('array', $translations, 'en');
         $translate->setLocale('en');
 

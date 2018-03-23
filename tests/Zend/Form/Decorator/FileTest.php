@@ -20,11 +20,6 @@
  * @version    $Id$
  */
 
-require_once 'Zend/Form/Decorator/File.php';
-
-require_once 'Zend/Form/Element/File.php';
-require_once 'Zend/View.php';
-require_once 'Zend/View/Helper/FormElement.php';
 
 /**
  * Test class for Zend_Form_Decorator_Errors

@@ -20,7 +20,6 @@
  * @version    $Id$
  */
 
-require_once 'Zend/Form/Element/Hash.php';
 
 /**
  * Test class for Zend_Form_Element_Hash
@@ -138,7 +137,6 @@ class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
 
     public function getView()
     {
-        require_once 'Zend/View.php';
         $view = new Zend_View();
         $view->addHelperPath(dirname(__FILE__) . '/../../../../library/Zend/View/Helper');
         return $view;

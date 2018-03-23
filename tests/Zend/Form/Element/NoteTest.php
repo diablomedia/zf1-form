@@ -20,9 +20,6 @@
  * @version    $Id$
  */
 
-require_once dirname(__FILE__) . '/../../../TestHelper.php';
-
-require_once 'Zend/Form/Element/Note.php';
 
 /**
  * Test class for Zend_Form_Element_Text

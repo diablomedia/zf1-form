@@ -20,11 +20,6 @@
  * @version    $Id$
  */
 
-require_once 'Zend/Form/Decorator/ViewScript.php';
-
-require_once 'Zend/Form/Element.php';
-require_once 'Zend/Form/Element/Text.php';
-require_once 'Zend/View.php';
 
 /**
  * Test class for Zend_Form_Decorator_ViewScript
@@ -146,7 +141,6 @@ class Zend_Form_Decorator_ViewScriptTest extends PHPUnit\Framework\TestCase
         $module = 'fooModule';
 
         // add module to front controller so partial view helper can verify it exists
-        require_once 'Zend/Controller/Front.php';
         Zend_Controller_Front::getInstance()->addControllerDirectory('', $module);
 
         $this->getElement()->setAttrib('viewModule', $module);

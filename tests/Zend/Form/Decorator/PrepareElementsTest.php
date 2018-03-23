@@ -20,10 +20,6 @@
  * @version    $Id$
  */
 
-require_once 'Zend/Form/Decorator/PrepareElements.php';
-require_once 'Zend/Form.php';
-require_once 'Zend/Form/SubForm.php';
-
 
 /**
  * Test class for Zend_Form_Decorator_PrepareElements
@@ -62,7 +58,6 @@ class Zend_Form_Decorator_PrepareElementsTest extends PHPUnit\Framework\TestCase
 
     public function getView()
     {
-        require_once 'Zend/View.php';
         $view = new Zend_View();
         return $view;
     }
@@ -117,7 +112,6 @@ class Zend_Form_Decorator_PrepareElementsTest extends PHPUnit\Framework\TestCase
     public function testEachElementShouldHaveUpdatedTranslatorProperty()
     {
         $this->prepareForm();
-        require_once 'Zend/Translate.php';
         $translator = new Zend_Translate('array', array('foo' => 'bar'), 'en');
         $this->form->setTranslator($translator);
         $this->form->render();

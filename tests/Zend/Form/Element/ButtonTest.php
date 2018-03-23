@@ -20,8 +20,6 @@
  * @version    $Id$
  */
 
-require_once 'Zend/Form/Element/Button.php';
-require_once 'Zend/Translate.php';
 
 /**
  * Test class for Zend_Form_Element_Button
@@ -63,7 +61,6 @@ class Zend_Form_Element_ButtonTest extends PHPUnit\Framework\TestCase
 
     public function getView()
     {
-        require_once 'Zend/View.php';
         $view = new Zend_View();
         return $view;
     }

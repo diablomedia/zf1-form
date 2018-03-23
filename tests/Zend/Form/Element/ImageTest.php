@@ -20,9 +20,6 @@
  * @version    $Id$
  */
 
-require_once 'Zend/Form/Element/Image.php';
-require_once 'Zend/View.php';
-require_once 'Zend/Translate/Adapter/Array.php';
 
 /**
  * Test class for Zend_Form_Element_Image

@@ -20,8 +20,6 @@
  * @version    $Id$
  */
 
-require_once 'Zend/Form/Decorator/Callback.php';
-require_once 'Zend/Form/Element.php';
 
 /**
  * Test class for Zend_Form_Decorator_Callback

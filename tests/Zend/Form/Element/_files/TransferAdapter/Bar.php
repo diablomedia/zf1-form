@@ -19,7 +19,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id$
  */
-namespace Zend\Form\Element\FileTest\Adapter;
+
 
 /**
  * @category   Zend
