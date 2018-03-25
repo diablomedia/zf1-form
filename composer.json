@@ -18,14 +18,14 @@
         "diablomedia/zendframework1-crypt": "^1.0.0",
         "diablomedia/zendframework1-json": "^1.0.0",
         "diablomedia/zendframework1-registry": "^1.0.0",
-        "diablomedia/zendframework1-captcha": "dev-master",
-        "diablomedia/zendframework1-controller": "dev-master",
-        "diablomedia/zendframework1-file": "dev-master",
-        "diablomedia/zendframework1-filter": "dev-master",
-        "diablomedia/zendframework1-session": "dev-master",
-        "diablomedia/zendframework1-translate": "dev-master",
-        "diablomedia/zendframework1-validate": "dev-master",
-        "diablomedia/zendframework1-view": "dev-master"
+        "diablomedia/zendframework1-captcha": "*",
+        "diablomedia/zendframework1-controller": "*",
+        "diablomedia/zendframework1-file": "*",
+        "diablomedia/zendframework1-filter": "*",
+        "diablomedia/zendframework1-session": "*",
+        "diablomedia/zendframework1-translate": "*",
+        "diablomedia/zendframework1-validate": "*",
+        "diablomedia/zendframework1-view": "*"
     },
     "autoload": {
         "psr-0": {
