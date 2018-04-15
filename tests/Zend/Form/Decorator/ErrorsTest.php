@@ -84,7 +84,7 @@ class Zend_Form_Decorator_ErrorsTest extends PHPUnit\Framework\TestCase
     {
         $this->setupElement();
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertContains($content, $test);
         foreach ($this->element->getMessages() as $message) {
             $this->assertContains($message, $test);
@@ -95,7 +95,7 @@ class Zend_Form_Decorator_ErrorsTest extends PHPUnit\Framework\TestCase
     {
         $this->setupElement();
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertRegExp('#' . $content . '.*?<ul#s', $test, $test);
     }
 
@@ -104,7 +104,7 @@ class Zend_Form_Decorator_ErrorsTest extends PHPUnit\Framework\TestCase
         $this->decorator->setOptions(array('placement' => 'PREPEND'));
         $this->setupElement();
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertRegExp('#</ul>.*?' . $content . '#s', $test);
     }
 
@@ -112,7 +112,7 @@ class Zend_Form_Decorator_ErrorsTest extends PHPUnit\Framework\TestCase
     {
         $this->setupElement();
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertContains($content . PHP_EOL . '<ul', $test);
     }
 
@@ -121,7 +121,7 @@ class Zend_Form_Decorator_ErrorsTest extends PHPUnit\Framework\TestCase
         $this->decorator->setOptions(array('separator' => '<br />'));
         $this->setupElement();
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertContains($content . $this->decorator->getSeparator() . '<ul', $test, $test);
     }
 
@@ -133,7 +133,7 @@ class Zend_Form_Decorator_ErrorsTest extends PHPUnit\Framework\TestCase
         // Set up form
         $form = new Zend_Form(
             array(
-                 'elements'         => array(
+                 'elements' => array(
                      'foo' => new Zend_Form_Element('foo'),
                      'bar' => new Zend_Form_Element('bar'),
                  ),
@@ -171,8 +171,8 @@ class Zend_Form_Decorator_ErrorsTest extends PHPUnit\Framework\TestCase
                      'foo' => new Zend_Form_Element('foo'),
                      'bar' => new Zend_Form_Element('bar'),
                  ),
-                 'view'     => $this->getView(),
-                 'name'     => 'foobar',
+                 'view' => $this->getView(),
+                 'name' => 'foobar',
             )
         );
 

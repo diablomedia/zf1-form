@@ -125,5 +125,4 @@ class Zend_Form_Element_Image extends Zend_Form_Element_Xhtml
         $imageValue = $this->getImageValue();
         return ((null !== $imageValue) && ($this->getValue() == $imageValue));
     }
-
 }

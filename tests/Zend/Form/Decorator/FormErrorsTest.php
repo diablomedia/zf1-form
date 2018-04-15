@@ -64,16 +64,16 @@ class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
     {
         $form1 = new Zend_Form_SubForm;
         $form1->addElement('text', 'foo', array(
-                    'label' => 'Sub Foo: ',
-                    'required' => true,
+                    'label'      => 'Sub Foo: ',
+                    'required'   => true,
                     'validators' => array(
                         'NotEmpty',
                         'Alpha',
                     ),
                 ))
               ->addElement('text', 'bar', array(
-                    'label' => 'Sub Bar: ',
-                    'required' => true,
+                    'label'      => 'Sub Bar: ',
+                    'required'   => true,
                     'validators' => array(
                         'Alpha',
                         'Alnum',
@@ -81,15 +81,15 @@ class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
                 ));
         $form2 = new Zend_Form;
         $form2->addElement('text', 'foo', array(
-                    'label' => 'Master Foo: ',
-                    'required' => true,
+                    'label'      => 'Master Foo: ',
+                    'required'   => true,
                     'validators' => array(
                         'NotEmpty',
                         'Alpha',
                     ),
                 ))
               ->addElement('text', 'bar', array(
-                    'required' => true,
+                    'required'   => true,
                     'validators' => array(
                         'Alpha',
                         'Alnum',
@@ -134,7 +134,7 @@ class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
     {
         $this->setupForm();
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertContains($content, $test);
         foreach ($this->form->getMessages() as $name => $messages) {
             foreach ($messages as $key => $message) {
@@ -153,7 +153,7 @@ class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
     {
         $this->setupForm();
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertRegExp('#' . $content . '.*?<ul#s', $test, $test);
     }
 
@@ -162,7 +162,7 @@ class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
         $this->decorator->setOptions(array('placement' => 'PREPEND'));
         $this->setupForm();
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertRegExp('#</ul>.*?' . $content . '#s', $test);
     }
 
@@ -170,7 +170,7 @@ class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
     {
         $this->setupForm();
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertContains($content . PHP_EOL . '<ul', $test);
     }
 
@@ -179,7 +179,7 @@ class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
         $this->decorator->setOptions(array('separator' => '<br />'));
         $this->setupForm();
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertContains($content . $this->decorator->getSeparator() . '<ul', $test, $test);
     }
 
@@ -250,7 +250,7 @@ class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
         $this->form->setName('foo')
                    ->setIsArray(true);
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertContains($content, $test);
         foreach ($this->form->getMessages() as $name => $messages) {
             while (($message = current($messages))) {

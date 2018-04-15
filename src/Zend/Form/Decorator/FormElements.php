@@ -66,7 +66,7 @@ class Zend_Form_Decorator_FormElements extends Zend_Form_Decorator_Abstract
      */
     public function render($content)
     {
-        $form    = $this->getElement();
+        $form = $this->getElement();
         if ((!$form instanceof Zend_Form) && (!$form instanceof Zend_Form_DisplayGroup)) {
             return $content;
         }

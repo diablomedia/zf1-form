@@ -69,7 +69,7 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
     public function testElementShouldProxyToParentForDecoratorPluginLoader()
     {
         $loader = $this->element->getPluginLoader('decorator');
-        $paths = $loader->getPaths('Zend_Form_Decorator');
+        $paths  = $loader->getPaths('Zend_Form_Decorator');
         $this->assertInternalType('array', $paths);
 
         $loader = new Zend_Loader_PluginLoader;
@@ -82,7 +82,7 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
     {
         $this->element->addPrefixPath('Foo_Decorator', 'Foo/Decorator/', 'decorator');
         $loader = $this->element->getPluginLoader('decorator');
-        $paths = $loader->getPaths('Foo_Decorator');
+        $paths  = $loader->getPaths('Foo_Decorator');
         $this->assertInternalType('array', $paths);
     }
 
@@ -207,8 +207,8 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
 
     public function testFileInSubSubSubform()
     {
-        $form = new Zend_Form();
-        $element = new Zend_Form_Element_File('file1');
+        $form     = new Zend_Form();
+        $element  = new Zend_Form_Element_File('file1');
         $element2 = new Zend_Form_Element_File('file2');
 
         $subform0 = new Zend_Form_SubForm();
@@ -230,7 +230,7 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
 
     public function testMultiFileInSubSubSubform()
     {
-        $form = new Zend_Form();
+        $form    = new Zend_Form();
         $element = new Zend_Form_Element_File('file');
         $element->setMultiFile(2);
 
@@ -252,7 +252,7 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
 
     public function testMultiFileWithOneFile()
     {
-        $form = new Zend_Form();
+        $form    = new Zend_Form();
         $element = new Zend_Form_Element_File('file');
         $element->setMultiFile(1);
 
@@ -429,19 +429,19 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
     private function _convertIniToInteger($setting)
     {
         if (!is_numeric($setting)) {
-            $type = strtoupper(substr($setting, -1));
+            $type    = strtoupper(substr($setting, -1));
             $setting = (integer) substr($setting, 0, -1);
 
             switch ($type) {
-                case 'M' :
+                case 'M':
                     $setting *= 1024;
                     break;
 
-                case 'G' :
+                case 'G':
                     $setting *= 1024 * 1024;
                     break;
 
-                default :
+                default:
                     break;
             }
         }
@@ -562,14 +562,14 @@ class Zend_Form_Element_FileTest_MockAdapter extends Zend_File_Transfer_Adapter_
 
     public function __construct()
     {
-        $testfile = dirname(__FILE__) . '/../_files/test.txt';
+        $testfile     = dirname(__FILE__) . '/../_files/test.txt';
         $this->_files = array(
             'foo' => array(
                 'name'       => 'foo.jpg',
                 'type'       => 'image/jpeg',
                 'size'       => 126976,
                 'tmp_name'   => '/tmp/489127ba5c89c',
-                'options'   => array('ignoreNoFile' => false, 'useByteString' => true),
+                'options'    => array('ignoreNoFile' => false, 'useByteString' => true),
                 'validated'  => false,
                 'received'   => false,
                 'filtered'   => false,
@@ -580,7 +580,7 @@ class Zend_Form_Element_FileTest_MockAdapter extends Zend_File_Transfer_Adapter_
                 'type'       => 'image/png',
                 'size'       => 91136,
                 'tmp_name'   => '/tmp/489128284b51f',
-                'options'   => array('ignoreNoFile' => false, 'useByteString' => true),
+                'options'    => array('ignoreNoFile' => false, 'useByteString' => true),
                 'validated'  => false,
                 'received'   => false,
                 'filtered'   => false,
@@ -591,7 +591,7 @@ class Zend_Form_Element_FileTest_MockAdapter extends Zend_File_Transfer_Adapter_
                 'type'       => 'text/plain',
                 'size'       => 1172,
                 'tmp_name'   => $testfile,
-                'options'   => array('ignoreNoFile' => false, 'useByteString' => true),
+                'options'    => array('ignoreNoFile' => false, 'useByteString' => true),
                 'validated'  => false,
                 'received'   => false,
                 'filtered'   => false,
@@ -602,7 +602,7 @@ class Zend_Form_Element_FileTest_MockAdapter extends Zend_File_Transfer_Adapter_
                 'type'       => 'text/plain',
                 'size'       => 1172,
                 'tmp_name'   => '/tmp/4891286cceff3',
-                'options'   => array('ignoreNoFile' => false, 'useByteString' => true),
+                'options'    => array('ignoreNoFile' => false, 'useByteString' => true),
                 'validated'  => false,
                 'received'   => false,
                 'filtered'   => false,
@@ -613,7 +613,7 @@ class Zend_Form_Element_FileTest_MockAdapter extends Zend_File_Transfer_Adapter_
                 'type'       => 'text/plain',
                 'size'       => 1172,
                 'tmp_name'   => '/tmp/4891286cceff3',
-                'options'   => array('ignoreNoFile' => false, 'useByteString' => true),
+                'options'    => array('ignoreNoFile' => false, 'useByteString' => true),
                 'validated'  => false,
                 'received'   => false,
                 'filtered'   => false,

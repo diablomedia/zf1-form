@@ -41,7 +41,7 @@ class Zend_Form_Element_PasswordTest extends PHPUnit\Framework\TestCase
      */
     public function setUp()
     {
-        $this->errors = array();
+        $this->errors  = array();
         $this->element = new Zend_Form_Element_Password('foo');
     }
 

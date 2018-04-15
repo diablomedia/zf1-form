@@ -45,7 +45,7 @@ class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
             unset($this->hash);
         }
 
-        $session = new Zend_Form_Element_HashTest_SessionContainer();
+        $session       = new Zend_Form_Element_HashTest_SessionContainer();
         $session->hash = null;
 
         $this->element = new Zend_Form_Element_Hash('foo', array(
@@ -146,10 +146,10 @@ class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
     {
         $this->_checkZf2794();
 
-        $session = $this->element->getSession();
+        $session       = $this->element->getSession();
         $session->hash = $this->element->getHash();
-        $element = new Zend_Form_Element_Hash('foo', array('session' => $session));
-        $validator = $element->getValidator('Identical');
+        $element       = new Zend_Form_Element_Hash('foo', array('session' => $session));
+        $validator     = $element->getValidator('Identical');
         $this->assertEquals($session->hash, $validator->getToken());
     }
 
@@ -224,7 +224,7 @@ class Zend_Form_Element_HashTest_SessionContainer
 
     public function __isset($name)
     {
-        if (('hash' == $name) && (null !== self::$_hash))  {
+        if (('hash' == $name) && (null !== self::$_hash)) {
             return true;
         }
 

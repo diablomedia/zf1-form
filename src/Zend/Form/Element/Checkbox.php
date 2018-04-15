@@ -133,7 +133,7 @@ class Zend_Form_Element_Checkbox extends Zend_Form_Element_Xhtml
      */
     public function setCheckedValue($value)
     {
-        $this->_checkedValue = (string) $value;
+        $this->_checkedValue           = (string) $value;
         $this->options['checkedValue'] = $value;
         return $this;
     }
@@ -156,7 +156,7 @@ class Zend_Form_Element_Checkbox extends Zend_Form_Element_Xhtml
      */
     public function setUncheckedValue($value)
     {
-        $this->_uncheckedValue = (string) $value;
+        $this->_uncheckedValue           = (string) $value;
         $this->options['uncheckedValue'] = $value;
         return $this;
     }

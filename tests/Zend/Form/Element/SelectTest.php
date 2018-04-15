@@ -210,7 +210,7 @@ class Zend_Form_Element_SelectTest extends PHPUnit\Framework\TestCase
                 '2' => 'Software Engineer',
             ),
             array('key' => '3', 'value' => 'Trainee'),
-            '4' => 'Intern',
+            '4'         => 'Intern',
         ));
 
         $this->assertTrue($this->element->isValid('1'));

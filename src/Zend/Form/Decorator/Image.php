@@ -98,7 +98,7 @@ class Zend_Form_Decorator_Image extends Zend_Form_Decorator_Abstract
 
         if (null !== ($element = $this->getElement())) {
             $attribs['alt'] = $element->getLabel();
-            $attribs = array_merge($attribs, $element->getAttribs());
+            $attribs        = array_merge($attribs, $element->getAttribs());
         }
 
         foreach ($this->_attribBlacklist as $key) {

@@ -151,7 +151,7 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
         }
 
         if (empty($type)) {
-            $nsSeparator = (false !== strpos($prefix, '\\'))?'\\':'_';
+            $nsSeparator  = (false !== strpos($prefix, '\\'))?'\\':'_';
             $pluginPrefix = rtrim($prefix, $nsSeparator) . $nsSeparator . 'Transfer' . $nsSeparator . 'Adapter';
             $pluginPath   = rtrim($path, DIRECTORY_SEPARATOR) . '/Transfer/Adapter/';
             $loader       = $this->getPluginLoader(self::TRANSFER_ADAPTER);
@@ -176,8 +176,8 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
         if ($adapter instanceof Zend_File_Transfer_Adapter_Abstract) {
             $this->_adapter = $adapter;
         } elseif (is_string($adapter)) {
-            $loader = $this->getPluginLoader(self::TRANSFER_ADAPTER);
-            $class  = $loader->load($adapter);
+            $loader         = $this->getPluginLoader(self::TRANSFER_ADAPTER);
+            $class          = $loader->load($adapter);
             $this->_adapter = new $class;
         } else {
             throw new Zend_Form_Element_Exception('Invalid adapter specified');
@@ -261,7 +261,7 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
      */
     public function getValidator($name)
     {
-        $adapter    = $this->getTransferAdapter();
+        $adapter = $this->getTransferAdapter();
         return $adapter->getValidator($name);
     }
 
@@ -272,7 +272,7 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
      */
     public function getValidators()
     {
-        $adapter = $this->getTransferAdapter();
+        $adapter    = $this->getTransferAdapter();
         $validators = $adapter->getValidators($this->getName());
         if ($validators === null) {
             $validators = array();
@@ -436,7 +436,7 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
             }
         }
 
-        if($adapter->isValid($this->getName())) {
+        if ($adapter->isValid($this->getName())) {
             $this->_validated = true;
             return true;
         }
@@ -637,23 +637,23 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
     private function _convertIniToInteger($setting)
     {
         if (!is_numeric($setting)) {
-            $type = strtoupper(substr($setting, -1));
+            $type    = strtoupper(substr($setting, -1));
             $setting = (integer) substr($setting, 0, -1);
 
             switch ($type) {
-                case 'K' :
+                case 'K':
                     $setting *= 1024;
                     break;
 
-                case 'M' :
+                case 'M':
                     $setting *= 1024 * 1024;
                     break;
 
-                case 'G' :
+                case 'G':
                     $setting *= 1024 * 1024 * 1024;
                     break;
 
-                default :
+                default:
                     break;
             }
         }

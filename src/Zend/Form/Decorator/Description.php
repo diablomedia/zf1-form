@@ -172,7 +172,7 @@ class Zend_Form_Decorator_Description extends Zend_Form_Decorator_Abstract
         $class     = $this->getClass();
         $escape    = $this->getEscape();
 
-        $options   = $this->getOptions();
+        $options = $this->getOptions();
 
         if ($escape) {
             $description = $view->escape($description);
@@ -180,8 +180,8 @@ class Zend_Form_Decorator_Description extends Zend_Form_Decorator_Abstract
 
         if (!empty($tag)) {
             $options['tag'] = $tag;
-            $decorator = new Zend_Form_Decorator_HtmlTag($options);
-            $description = $decorator->render($description);
+            $decorator      = new Zend_Form_Decorator_HtmlTag($options);
+            $description    = $decorator->render($description);
         }
 
         switch ($placement) {

@@ -106,7 +106,7 @@ class Zend_Form_Element_NoteTest extends PHPUnit\Framework\TestCase
                         'max' => 10,
                     )
                 ),
-                'value'   => '11',
+                'value' => '11',
             ),
             array(
                 'options' => array('Date'),
@@ -130,7 +130,7 @@ class Zend_Form_Element_NoteTest extends PHPUnit\Framework\TestCase
                     false,
                     array('min' => 10),
                 ),
-                'value'   => '9',
+                'value' => '9',
             ),
             array(
                 'options' => array('Hex'),
@@ -145,7 +145,7 @@ class Zend_Form_Element_NoteTest extends PHPUnit\Framework\TestCase
                         'otherkey' => 'othervalue',
                     )
                 ),
-                'value'   => 'foo',
+                'value' => 'foo',
             ),
             array(
                 'options' => array('Int'),
@@ -157,7 +157,7 @@ class Zend_Form_Element_NoteTest extends PHPUnit\Framework\TestCase
                     false,
                     array('max' => 10),
                 ),
-                'value'   => '11',
+                'value' => '11',
             ),
             array(
                 'options' => array('NotEmpty'),
@@ -169,7 +169,7 @@ class Zend_Form_Element_NoteTest extends PHPUnit\Framework\TestCase
                     false,
                     array('pattern' => '/^Test/'),
                 ),
-                'value'   => 'Pest',
+                'value' => 'Pest',
             ),
             array(
                 'options' => array(
@@ -180,7 +180,7 @@ class Zend_Form_Element_NoteTest extends PHPUnit\Framework\TestCase
                         20,
                     )
                 ),
-                'value'   => 'foo',
+                'value' => 'foo',
             ),
         );
 

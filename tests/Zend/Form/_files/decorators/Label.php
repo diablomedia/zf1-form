@@ -43,5 +43,4 @@ class My_Decorator_Label extends Zend_Form_Decorator_Abstract
     {
         return $content;
     }
-
 }

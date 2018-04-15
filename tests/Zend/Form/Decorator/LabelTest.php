@@ -90,7 +90,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
                 ->setLabel('My Label');
         $this->decorator->setElement($element);
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertContains('for="foobar"', $test);
     }
 
@@ -101,10 +101,10 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
                 ->setLabel('My Label');
         $this->decorator->setElement($element);
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertRegExp('/<label[^>]*?class="[^"]*optional/', $test, $test);
 
-        $element->class = "bar";
+        $element->class = 'bar';
         $this->decorator->setOption('class', 'foo');
         $test = $this->decorator->render($content);
         $this->assertNotRegExp('/<label[^>]*?class="[^"]*bar/', $test, $test);
@@ -120,10 +120,10 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
                 ->setLabel('My Label');
         $this->decorator->setElement($element);
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertRegExp('/<label[^>]*?class="[^"]*required/', $test, $test);
 
-        $element->class = "bar";
+        $element->class = 'bar';
         $this->decorator->setOption('class', 'foo');
         $test = $this->decorator->render($content);
         $this->assertNotRegExp('/<label[^>]*?class="[^"]*bar/', $test, $test);
@@ -140,7 +140,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
                 ->setAttrib('class', 'bazbat');
         $this->decorator->setElement($element);
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertRegExp('/<label[^>]*?class="[^"]*required/', $test, $test);
         $this->assertNotRegExp('/<label[^>]*?class="[^"]*bazbat/', $test, $test);
     }
@@ -158,7 +158,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
                 ->setLabel('My Label');
         $this->decorator->setElement($element);
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertNotContains('-req-prefix-', $test, $test);
         $this->assertNotContains('-req-suffix-', $test, $test);
         $this->assertContains('-opt-prefix-', $test, $test);
@@ -180,7 +180,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
                 ->setLabel('My Label');
         $this->decorator->setElement($element);
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertNotContains('-opt-prefix-', $test, $test);
         $this->assertNotContains('-opt-suffix-', $test, $test);
         $this->assertContains('-req-prefix-', $test, $test);
@@ -199,7 +199,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
                 ->setAttrib('class', 'foobar');
         $this->decorator->setElement($element);
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertNotRegExp('#<label[^>]*(class="[^"]*foobar)[^"]*"#', $test, $test);
     }
 
@@ -210,7 +210,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
                 ->setLabel('My Label');
         $this->decorator->setElement($element);
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertContains($content, $test);
         $this->assertContains($element->getLabel(), $test);
         $this->assertContains('<label for=', $test);
@@ -225,7 +225,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
         $this->decorator->setElement($element)
                         ->setOptions(array('placement' => 'APPEND'));
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertRegExp('#' . $content . '.*?<label#s', $test);
     }
 
@@ -283,7 +283,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
                         ->setOptions(array('tag' => 'dt'));
         $this->decorator->setTag('');
         $tag = $this->decorator->getTag();
-        $this->assertTrue( NULL === $tag, $tag );
+        $this->assertTrue(null === $tag, $tag);
     }
 
 
@@ -297,7 +297,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
                         ->setOptions(array('tag' => 'dt'));
         $this->decorator->setTagClass('');
         $tagClass = $this->decorator->getTagClass();
-        $this->assertTrue( NULL === $tagClass, $tagClass );
+        $this->assertTrue(null === $tagClass, $tagClass);
     }
 
     /**
@@ -388,7 +388,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
                      'firstLabel'  => 'secondLabel',
                      'secondLabel' => 'thirdLabel',
                  ),
-                 'locale'  => 'en'
+                 'locale' => 'en'
             )
         );
 

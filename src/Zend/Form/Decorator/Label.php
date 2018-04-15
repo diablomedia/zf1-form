@@ -202,7 +202,7 @@ class Zend_Form_Decorator_Label extends Zend_Form_Decorator_Abstract
             $class .= ' ' . $decoratorClass;
         }
 
-        $type  = $element->isRequired() ? 'required' : 'optional';
+        $type = $element->isRequired() ? 'required' : 'optional';
 
         if (!strstr($class, $type)) {
             $class .= ' ' . $type;
@@ -221,7 +221,7 @@ class Zend_Form_Decorator_Label extends Zend_Form_Decorator_Abstract
     protected function _loadOptReqKey($key)
     {
         if (!isset($this->$key)) {
-            $value = $this->getOption($key);
+            $value      = $this->getOption($key);
             $this->$key = (string) $value;
             if (null !== $value) {
                 $this->removeOption($key);
@@ -273,7 +273,7 @@ class Zend_Form_Decorator_Label extends Zend_Form_Decorator_Abstract
                     if (0 === count($args)) {
                         throw new Zend_Form_Exception(sprintf('Method "%s" requires at least one argument; none provided', $method));
                     }
-                    $value = array_shift($args);
+                    $value      = array_shift($args);
                     $this->$key = $value;
                     return $this;
                 case 'get':
@@ -440,8 +440,8 @@ class Zend_Form_Decorator_Label extends Zend_Form_Decorator_Abstract
                                              'id'    => $id . '-label',
                                              'class' => $tagClass));
             } else {
-                $decorator->setOptions(array('tag'   => $tag,
-                                             'id'    => $id . '-label'));
+                $decorator->setOptions(array('tag' => $tag,
+                                             'id'  => $id . '-label'));
             }
 
             $label = $decorator->render($label);

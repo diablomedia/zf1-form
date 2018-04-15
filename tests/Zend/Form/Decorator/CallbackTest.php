@@ -174,7 +174,7 @@ function Zend_Form_Decorator_CallbackTest_TestCallback($content, $element, array
     if (method_exists($element, 'getLabel')) {
         $label = $element->getLabel();
     }
-    $html =<<<EOH
+    $html = <<<EOH
 $label: $name
 
 EOH;
@@ -190,7 +190,7 @@ class Zend_Form_Decorator_CallbackTest_TestCallbackClass
         if (method_exists($element, 'getLabel')) {
             $label = $element->getLabel();
         }
-        $html =<<<EOH
+        $html = <<<EOH
 Item "$label": $name
 
 EOH;

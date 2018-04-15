@@ -70,7 +70,7 @@ class Zend_Form_Decorator_ViewHelperTest extends PHPUnit\Framework\TestCase
 
     public function testGetHelperWillUseElementHelperAttributeInAbsenceOfHelper()
     {
-        $element = new Zend_Form_Element('foo');
+        $element         = new Zend_Form_Element('foo');
         $element->helper = 'formTextarea';
         $this->decorator->setElement($element);
         $this->assertEquals('formTextarea', $this->decorator->getHelper());
@@ -104,7 +104,7 @@ class Zend_Form_Decorator_ViewHelperTest extends PHPUnit\Framework\TestCase
     {
         $element = $this->getElement();
         $element->setIsArray(true);
-        $name = $this->decorator->getName();
+        $name   = $this->decorator->getName();
         $expect = $element->getName() . '[]';
         $this->assertEquals($expect, $name);
     }
@@ -126,7 +126,7 @@ class Zend_Form_Decorator_ViewHelperTest extends PHPUnit\Framework\TestCase
         $element = $this->getElement();
         $element->setView($this->getView());
         $content = 'test content';
-        $test = $this->decorator->render($content);
+        $test    = $this->decorator->render($content);
         $this->assertContains($content, $test);
         $this->assertRegExp('#<input.*?name="foo"#s', $test);
     }
@@ -178,7 +178,7 @@ class Zend_Form_Decorator_ViewHelperTest extends PHPUnit\Framework\TestCase
 
         $expected = '<p><label><input type="checkbox" name="foo[]" id="foo-foo" value="foo">Foo</label></p>'
                   . '<p><label><input type="checkbox" name="foo[]" id="foo-bar" value="bar">Bar</label></p>';
-        $actual   = $element->render($this->getView());
+        $actual = $element->render($this->getView());
 
         $this->assertEquals($expected, $actual);
     }
@@ -204,7 +204,7 @@ class Zend_Form_Decorator_ViewHelperTest extends PHPUnit\Framework\TestCase
 
         $expected = '<p><label><input type="radio" name="foo" id="foo-foo" value="foo">Foo</label></p>'
                   . '<p><label><input type="radio" name="foo" id="foo-bar" value="bar">Bar</label></p>';
-        $actual   = $element->render($this->getView());
+        $actual = $element->render($this->getView());
 
         $this->assertEquals($expected, $actual);
     }

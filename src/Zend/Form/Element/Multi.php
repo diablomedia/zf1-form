@@ -100,7 +100,7 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
      */
     public function addMultiOption($option, $value = '')
     {
-        $option  = (string) $option;
+        $option = (string) $option;
         $this->_getMultiOptions();
         if (!$this->_translateOption($option, $value)) {
             $this->options[$option] = $value;
@@ -150,7 +150,7 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
      */
     public function getMultiOption($option)
     {
-        $option  = (string) $option;
+        $option = (string) $option;
         $this->_getMultiOptions();
         if (isset($this->options[$option])) {
             $this->_translateOption($option, $this->options[$option]);
@@ -182,7 +182,7 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
      */
     public function removeMultiOption($option)
     {
-        $option  = (string) $option;
+        $option = (string) $option;
         $this->_getMultiOptions();
         if (isset($this->options[$option])) {
             unset($this->options[$option]);
@@ -202,7 +202,7 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
      */
     public function clearMultiOptions()
     {
-        $this->options = array();
+        $this->options     = array();
         $this->_translated = array();
         return $this;
     }
@@ -249,8 +249,7 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
                     // optgroup instead of option label
                     if (is_array($opt_label)) {
                         $options = array_merge($options, array_keys($opt_label));
-                    }
-                    else {
+                    } else {
                         $options[] = $opt_value;
                     }
                 }

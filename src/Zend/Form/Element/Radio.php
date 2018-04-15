@@ -53,9 +53,8 @@ class Zend_Form_Element_Radio extends Zend_Form_Element_Multi
 
         // Disable 'for' attribute
         if (isset($this->_decorators['Label'])
-            && !isset($this->_decorators['Label']['options']['disableFor']))
-        {
-             $this->_decorators['Label']['options']['disableFor'] = true;
+            && !isset($this->_decorators['Label']['options']['disableFor'])) {
+            $this->_decorators['Label']['options']['disableFor'] = true;
         }
 
         return $this;

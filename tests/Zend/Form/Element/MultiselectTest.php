@@ -145,11 +145,11 @@ class Zend_Form_Element_MultiselectTest extends PHPUnit\Framework\TestCase
                 'value' => '1',
                 'key'   => 'aa',
             ),
-            array (
+            array(
                 'key'   => '2',
                 'value' => 'xxxx',
             ),
-            array (
+            array(
                 'value' => '444',
                 'key'   => 'ssss',
             ),
@@ -176,7 +176,6 @@ class Zend_Form_Element_MultiselectTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($config->options->first->value, $this->element->getMultiOption('aa'));
         $this->assertEquals($config->options->second->value, $this->element->getMultiOption(2));
         $this->assertEquals($config->options->third->value, $this->element->getMultiOption('ssss'));
-
     }
 
     public function testCanRemoveMultiOption()

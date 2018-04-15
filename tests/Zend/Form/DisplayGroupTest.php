@@ -56,7 +56,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 
     public function getView()
     {
-        $view = new Zend_View();
+        $view    = new Zend_View();
         $libPath = dirname(__FILE__) . '/../../../library';
         $view->addHelperPath($libPath . '/Zend/View/Helper');
         return $view;
@@ -112,7 +112,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
     public function testCanSetDescription()
     {
         $this->testDescriptionInitiallyNull();
-        $description = "this is a description";
+        $description = 'this is a description';
         $this->group->setDescription($description);
         $this->assertEquals($description, $this->group->getDescription());
     }
@@ -370,8 +370,8 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 
     public function testRenderingRendersAllElementsWithinFieldsetByDefault()
     {
-        $foo  = new Zend_Form_Element_Text('foo');
-        $bar  = new Zend_Form_Element_Text('bar');
+        $foo = new Zend_Form_Element_Text('foo');
+        $bar = new Zend_Form_Element_Text('bar');
 
         $this->group->addElements(array($foo, $bar));
         $html = $this->group->render($this->getView());
@@ -383,8 +383,8 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 
     public function testToStringProxiesToRender()
     {
-        $foo  = new Zend_Form_Element_Text('foo');
-        $bar  = new Zend_Form_Element_Text('bar');
+        $foo = new Zend_Form_Element_Text('foo');
+        $bar = new Zend_Form_Element_Text('bar');
 
         $this->group->addElements(array($foo, $bar))
                     ->setView($this->getView());
@@ -490,9 +490,9 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 
     public function testDisplayGroupIteratesElementsInExpectedOrderWhenFirstElementHasNoOrderSpecified()
     {
-        $a = new Zend_Form_Element('a',array('label'=>'a'));
-        $b = new Zend_Form_Element('b',array('label'=>'b', 'order' => 0));
-        $c = new Zend_Form_Element('c',array('label'=>'c', 'order' => 1));
+        $a = new Zend_Form_Element('a', array('label' => 'a'));
+        $b = new Zend_Form_Element('b', array('label' => 'b', 'order' => 0));
+        $c = new Zend_Form_Element('c', array('label' => 'c', 'order' => 1));
         $this->group->addElement($a)
                     ->addElement($b)
                     ->addElement($c)
@@ -563,8 +563,8 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
      */
     public function testSetOptionsOmitsAccessorsRequiringObjectsOrMultipleParams()
     {
-        $options = $this->getOptions();
-        $config  = new Zend_Config($options);
+        $options                 = $this->getOptions();
+        $config                  = new Zend_Config($options);
         $options['config']       = $config;
         $options['options']      = $config->toArray();
         $options['pluginLoader'] = true;
@@ -578,7 +578,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
     {
         $this->_checkZf2794();
 
-        $options = $this->getOptions();
+        $options               = $this->getOptions();
         $options['decorators'] = array('label', 'form');
         $this->group->setOptions($options);
         $this->assertFalse($this->group->getDecorator('group'));
@@ -593,7 +593,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
     {
         $this->_checkZf2794();
 
-        $options = $this->getOptions();
+        $options               = $this->getOptions();
         $options['decorators'] = array(
             array('label', array('id' => 'mylabel')),
             array('form', array('id' => 'form')),
@@ -616,7 +616,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
     {
         $this->_checkZf2794();
 
-        $options = $this->getOptions();
+        $options               = $this->getOptions();
         $options['decorators'] = array(
             array(
                 'options'   => array('id' => 'mylabel'),
@@ -719,8 +719,8 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
      */
     public function testGroupShouldOverloadToRenderDecorators()
     {
-        $foo  = new Zend_Form_Element_Text('foo');
-        $bar  = new Zend_Form_Element_Text('bar');
+        $foo = new Zend_Form_Element_Text('foo');
+        $bar = new Zend_Form_Element_Text('bar');
         $this->group->addElements(array($foo, $bar));
 
         $this->group->setView($this->getView());
@@ -776,9 +776,9 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
      */
     public function testAddDecoratorsKeepsNonNumericKeyNames()
     {
-        $this->group->addDecorators(array(array(array('td'  => 'HtmlTag'),
+        $this->group->addDecorators(array(array(array('td' => 'HtmlTag'),
                                                array('tag' => 'td')),
-                                         array(array('tr'  => 'HtmlTag'),
+                                         array(array('tr' => 'HtmlTag'),
                                                array('tag' => 'tr')),
                                          array('HtmlTag', array('tag' => 'baz'))));
         $t1 = $this->group->getDecorators();

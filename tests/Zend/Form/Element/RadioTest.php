@@ -174,8 +174,8 @@ class Zend_Form_Element_RadioTest extends PHPUnit\Framework\TestCase
     public function testRenderingShouldCreateLabelWithoutForAttribute()
     {
         $this->element->setMultiOptions(array(
-                'foo'  => 'Foo',
-                'bar'  => 'Bar',
+                'foo' => 'Foo',
+                'bar' => 'Bar',
              ))
              ->setLabel('Foo');
         $html = $this->element->render($this->getView());
@@ -190,8 +190,8 @@ class Zend_Form_Element_RadioTest extends PHPUnit\Framework\TestCase
         $element = new Zend_Form_Element_Radio(array(
             'name'         => 'foo',
             'multiOptions' => array(
-                'bar'  => 'Bar',
-                'baz'  => 'Baz',
+                'bar' => 'Bar',
+                'baz' => 'Baz',
             ),
             'decorators' => array(
                 'ViewHelper',
@@ -209,8 +209,8 @@ class Zend_Form_Element_RadioTest extends PHPUnit\Framework\TestCase
         $element = new Zend_Form_Element_Radio(array(
             'name'         => 'foo',
             'multiOptions' => array(
-                'bar'  => 'Bar',
-                'baz'  => 'Baz',
+                'bar' => 'Bar',
+                'baz' => 'Baz',
             ),
             'decorators' => array(
                 'ViewHelper',

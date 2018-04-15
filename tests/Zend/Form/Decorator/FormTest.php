@@ -76,7 +76,7 @@ class Zend_Form_Decorator_FormTest extends PHPUnit\Framework\TestCase
             'enctype' => 'ascii',
             'charset' => 'us-ascii'
         );
-        $loader = new Zend_Loader_PluginLoader(array('Zend_Form_Decorator' => 'Zend/Form/Decorator/'));
+        $loader       = new Zend_Loader_PluginLoader(array('Zend_Form_Decorator' => 'Zend/Form/Decorator/'));
         $displayGroup = new Zend_Form_DisplayGroup('foo', $loader, array('attribs' => $attribs));
         $this->decorator->setElement($displayGroup);
         $options = $this->decorator->getOptions();

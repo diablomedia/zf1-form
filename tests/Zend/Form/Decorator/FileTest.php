@@ -161,8 +161,8 @@ class Zend_Form_Decorator_FileTest extends PHPUnit\Framework\TestCase
         $defaultOutput = $element->render();
 
         // Get output using mock view helper
-        $element->helper = "formFileMock";
-        $mockOutput = $element->render();
+        $element->helper = 'formFileMock';
+        $mockOutput      = $element->render();
 
         // Ensure the view helper was changed
         $this->assertRegExp('/FormFileMock/s', $mockOutput);
@@ -172,19 +172,19 @@ class Zend_Form_Decorator_FileTest extends PHPUnit\Framework\TestCase
     private function _convertIniToInteger($setting)
     {
         if (!is_numeric($setting)) {
-            $type = strtoupper(substr($setting, -1));
+            $type    = strtoupper(substr($setting, -1));
             $setting = (integer) substr($setting, 0, -1);
 
             switch ($type) {
-                case 'M' :
+                case 'M':
                     $setting *= 1024;
                     break;
 
-                case 'G' :
+                case 'G':
                     $setting *= 1024 * 1024;
                     break;
 
-                default :
+                default:
                     break;
             }
         }
@@ -195,8 +195,8 @@ class Zend_Form_Decorator_FileTest extends PHPUnit\Framework\TestCase
 
 class Zend_View_Helper_FormFileMock extends Zend_View_Helper_FormElement
 {
-    public function formFileMock($name, $attribs=NULL)
+    public function formFileMock($name, $attribs = null)
     {
-        return "FormFileMock";
+        return 'FormFileMock';
     }
 }

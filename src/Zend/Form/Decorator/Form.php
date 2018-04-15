@@ -116,8 +116,8 @@ class Zend_Form_Decorator_Form extends Zend_Form_Decorator_Abstract
      */
     public function render($content)
     {
-        $form    = $this->getElement();
-        $view    = $form->getView();
+        $form = $this->getElement();
+        $view = $form->getView();
         if (null === $view) {
             return $content;
         }

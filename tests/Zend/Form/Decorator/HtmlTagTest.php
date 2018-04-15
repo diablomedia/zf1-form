@@ -63,7 +63,7 @@ class Zend_Form_Decorator_HtmlTagTest extends PHPUnit\Framework\TestCase
 
     public function testNormalizeTagStripsNonAlphanumericCharactersAndLowersCase()
     {
-        $tag = 'ab1-cd0EFG';
+        $tag      = 'ab1-cd0EFG';
         $received = $this->decorator->normalizeTag($tag);
         $this->assertEquals('ab1cd0efg', $received);
     }

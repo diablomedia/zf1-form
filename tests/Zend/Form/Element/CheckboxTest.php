@@ -94,9 +94,9 @@ class Zend_Form_Element_CheckboxTest extends PHPUnit\Framework\TestCase
 
     public function testCheckedAttributeRenderedWhenCheckedFlagTrue()
     {
-        $view = new Zend_View();
+        $view                   = new Zend_View();
         $this->element->checked = true;
-        $html = $this->element->render($view);
+        $html                   = $this->element->render($view);
         $this->assertContains('checked="checked"', $html);
     }
 

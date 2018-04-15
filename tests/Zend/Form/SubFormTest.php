@@ -52,7 +52,7 @@ class Zend_Form_SubFormTest extends PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('Zend_Form_Decorator_DtDdWrapper', $decorators);
 
         $htmlTag = $decorators['Zend_Form_Decorator_HtmlTag'];
-        $tag = $htmlTag->getOption('tag');
+        $tag     = $htmlTag->getOption('tag');
         $this->assertEquals('dl', $tag);
     }
 
@@ -72,7 +72,7 @@ class Zend_Form_SubFormTest extends PHPUnit\Framework\TestCase
 
     public function testInitCalledBeforeLoadDecorators()
     {
-        $form = new Zend_Form_SubFormTest_SubForm();
+        $form       = new Zend_Form_SubFormTest_SubForm();
         $decorators = $form->getDecorators();
         $this->assertEmpty($decorators);
     }
@@ -111,7 +111,7 @@ class Zend_Form_SubFormTest extends PHPUnit\Framework\TestCase
         $form->addSubForm($subForm, 'foobar')
              ->setView(new Zend_View);
         $html = $form->render();
-        $this->assertContains('>&#160;</dt>', $html  );
+        $this->assertContains('>&#160;</dt>', $html);
     }
 
     /**
@@ -139,8 +139,8 @@ class Zend_Form_SubFormTest extends PHPUnit\Framework\TestCase
         $form->addSubForm($subForm, 0);
         $form->addSubForm($subForm, 234);
         $form2 = clone $form;
-        $this->assertEquals($form2->getSubForm(234)->getName(),234);
-        $this->assertEquals($form2->getSubForm(0)->getName(),0);
+        $this->assertEquals($form2->getSubForm(234)->getName(), 234);
+        $this->assertEquals($form2->getSubForm(0)->getName(), 0);
     }
 }
 

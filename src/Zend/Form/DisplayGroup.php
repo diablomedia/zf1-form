@@ -27,7 +27,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id$
  */
-class Zend_Form_DisplayGroup implements Iterator,Countable
+class Zend_Form_DisplayGroup implements Iterator, Countable
 {
     /**
      * Group attributes
@@ -196,7 +196,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
      */
     public function setAttrib($key, $value)
     {
-        $key = (string) $key;
+        $key                  = (string) $key;
         $this->_attribs[$key] = $value;
         return $this;
     }
@@ -466,7 +466,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
     public function addElement(Zend_Form_Element $element)
     {
         $this->_elements[$element->getName()] = $element;
-        $this->_groupUpdated = true;
+        $this->_groupUpdated                  = true;
 
         // Display group will now handle display of element
         if (null !== ($form = $this->getForm())) {
@@ -556,7 +556,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
      */
     public function clearElements()
     {
-        $this->_elements = array();
+        $this->_elements     = array();
         $this->_groupUpdated = true;
         return $this;
     }
@@ -763,9 +763,11 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
                         case (0 == $argc):
                             break;
                         case (1 <= $argc):
-                            $decorator  = array_shift($decoratorInfo);
+                            $decorator = array_shift($decoratorInfo);
+                            // no break
                         case (2 <= $argc):
                             $options = array_shift($decoratorInfo);
+                            // no break
                         default:
                             $this->addDecorator($decorator, $options);
                             break;
