@@ -212,7 +212,7 @@ class Zend_Form_Element_CheckboxTest extends PHPUnit\Framework\TestCase
         if (!preg_match_all('/(<input[^>]+>)/', $html, $matches)) {
             $this->fail('Unexpected generated HTML: ' . $html);
         }
-        $this->assertEquals(2, count($matches[1]));
+        $this->assertCount(2, $matches[1]);
         foreach ($matches[1] as $element) {
             if (strstr($element, 'hidden')) {
                 $this->assertContains($this->element->getUncheckedValue(), $element);

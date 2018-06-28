@@ -533,7 +533,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
     public function testCanCountDisplayGroup()
     {
         $this->setupIteratorElements();
-        $this->assertEquals(3, count($this->group));
+        $this->assertCount(3, $this->group);
     }
 
     // Configuration

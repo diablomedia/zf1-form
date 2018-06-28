@@ -151,7 +151,7 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
         $test       = $this->element->getTransferAdapter()->getValidators();
         $this->assertEquals($validators, $test);
         $this->assertInternalType('array', $test);
-        $this->assertEquals(3, count($test));
+        $this->assertCount(3, $test);
 
         $validator = $this->element->getValidator('count');
         $test      = $this->element->getTransferAdapter()->getValidator('count');
@@ -170,12 +170,12 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
         $test       = $this->element->getTransferAdapter()->getValidators();
         $this->assertSame($validators, $test);
         $this->assertInternalType('array', $test);
-        $this->assertEquals(3, count($test), var_export($test, 1));
+        $this->assertCount(3, $test, var_export($test, 1));
 
         $this->element->clearValidators();
         $validators = $this->element->getValidators();
         $this->assertInternalType('array', $validators);
-        $this->assertEquals(0, count($validators));
+        $this->assertCount(0, $validators);
         $test = $this->element->getTransferAdapter()->getValidators();
         $this->assertSame($validators, $test);
     }
@@ -367,7 +367,7 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
     public function testMarkerInterfaceForFileElement()
     {
         $this->element->setDecorators(array('ViewHelper'));
-        $this->assertEquals(1, count($this->element->getDecorators()));
+        $this->assertCount(1, $this->element->getDecorators());
 
         try {
             $content = $this->element->render(new Zend_View());

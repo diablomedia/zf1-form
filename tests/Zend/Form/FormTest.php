@@ -1876,7 +1876,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->form->setDisplayGroups(array('foobar' => array('bar', 'foo')));
         $groups   = $this->form->getDisplayGroups();
         $expected = array('bar' => $this->form->bar, 'foo' => $this->form->foo);
-        $this->assertEquals(1, count($groups));
+        $this->assertCount(1, $groups);
         $this->assertTrue(isset($groups['foobar']));
         $this->assertEquals($expected, $groups['foobar']->getElements());
     }
@@ -2837,7 +2837,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->form->addErrorMessage('Invalid values entered');
         $this->assertFalse($this->form->isValid(array('foo' => 123)));
         $messages = $this->form->getMessages();
-        $this->assertEquals(1, count($messages));
+        $this->assertCount(1, $messages);
         $this->assertEquals('Invalid values entered', array_shift($messages));
     }
 
@@ -2847,11 +2847,11 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->form->addErrorMessage('Invalid values entered');
         $this->form->addErrorMessage('Really, they are not valid');
         $messages = $this->form->getErrorMessages();
-        $this->assertEquals(2, count($messages));
+        $this->assertCount(2, $messages);
 
         $this->assertFalse($this->form->isValid(array('foo' => 123)));
         $messages = $this->form->getMessages();
-        $this->assertEquals(2, count($messages));
+        $this->assertCount(2, $messages);
         $this->assertEquals('Invalid values entered', array_shift($messages));
         $this->assertEquals('Really, they are not valid', array_shift($messages));
     }
@@ -2892,7 +2892,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
                       ->addErrorMessage('foo');
         $this->assertFalse($this->form->isValid(array('foo' => 123)));
         $messages = $this->form->getMessages();
-        $this->assertEquals(1, count($messages));
+        $this->assertCount(1, $messages);
         $this->assertEquals('Foo message', array_shift($messages));
     }
 
@@ -2903,7 +2903,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->form->markAsError();
         $this->assertTrue($this->form->hasErrors());
         $messages = $this->form->getMessages();
-        $this->assertEquals(1, count($messages));
+        $this->assertCount(1, $messages);
         $this->assertEquals('Invalid values entered', array_shift($messages));
     }
 
@@ -2915,7 +2915,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
                    ->addErrors(array('Error 4', 'Error 5'));
         $this->assertTrue($this->form->hasErrors());
         $messages = $this->form->getMessages();
-        $this->assertEquals(5, count($messages));
+        $this->assertCount(5, $messages);
         foreach (range(1, 5) as $id) {
             $message = 'Error ' . $id;
             $this->assertContains($message, $messages);
@@ -3206,8 +3206,8 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         if (!preg_match_all('#<input[^>]+name="foo"#', $this->html, $matches)) {
             $this->fail('Should find foo element in rendered form');
         }
-        $this->assertEquals(1, count($matches));
-        $this->assertEquals(1, count($matches[0]));
+        $this->assertCount(1, $matches);
+        $this->assertCount(1, $matches[0]);
     }
 
     public function testElementsRenderAsArrayMembersWhenElementsBelongToAnArray()
@@ -3585,21 +3585,21 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
     public function testCanCountFormObject()
     {
         $this->setupElements();
-        $this->assertEquals(3, count($this->form));
+        $this->assertCount(3, $this->form);
     }
 
     public function testCountingFormObjectCountsSubForms()
     {
         $this->setupElements();
         $this->setupSubForm();
-        $this->assertEquals(4, count($this->form));
+        $this->assertCount(4, $this->form);
     }
 
     public function testCountingFormCountsDisplayGroupsButOmitsElementsInDisplayGroups()
     {
         $this->testCountingFormObjectCountsSubForms();
         $this->form->addDisplayGroup(array('foo', 'baz'), 'foobaz');
-        $this->assertEquals(3, count($this->form));
+        $this->assertCount(3, $this->form);
     }
 
     // Element decorators and plugin paths
@@ -4247,12 +4247,12 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->form->addElement('text', 'foo', array('required' => true, 'translator' => $translate));
         $this->assertFalse($this->form->isValid(array('foo' => '')));
         $messages = $this->form->getMessages();
-        $this->assertEquals(1, count($messages));
+        $this->assertCount(1, $messages);
         $this->assertEquals('Element message', $messages['foo']['isEmpty']);
 
         $this->assertFalse($this->form->isValidPartial(array('foo' => '')));
         $messages = $this->form->getMessages();
-        $this->assertEquals(1, count($messages));
+        $this->assertCount(1, $messages);
         $this->assertEquals('Element message', $messages['foo']['isEmpty']);
     }
 
@@ -4275,13 +4275,13 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
         $this->assertFalse($this->form->isValid(array('foo' => '', 'bar' => '')));
         $messages = $this->form->getMessages();
-        $this->assertEquals(2, count($messages));
+        $this->assertCount(2, $messages);
         $this->assertEquals('Element message', $messages['foo']['isEmpty']);
         $this->assertEquals('Form message', $messages['bar']['isEmpty']);
 
         $this->assertFalse($this->form->isValidPartial(array('foo' => '', 'bar' => '')));
         $messages = $this->form->getMessages();
-        $this->assertEquals(2, count($messages));
+        $this->assertCount(2, $messages);
         $this->assertEquals('Element message', $messages['foo']['isEmpty']);
         $this->assertEquals('Form message', $messages['bar']['isEmpty']);
     }
@@ -4311,13 +4311,13 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
         $this->assertFalse($this->form->isValid(array('foo' => '', 'bar' => '')));
         $messages = $this->form->getMessages();
-        $this->assertEquals(2, count($messages));
+        $this->assertCount(2, $messages);
         $this->assertEquals('Element message', $messages['foo']['isEmpty']);
         $this->assertEquals('Form message', $messages['bar']['isEmpty']);
 
         $this->assertFalse($this->form->isValidPartial(array('foo' => '', 'bar' => '')));
         $messages = $this->form->getMessages();
-        $this->assertEquals(2, count($messages));
+        $this->assertCount(2, $messages);
         $this->assertEquals('Element message', $messages['foo']['isEmpty']);
         $this->assertEquals('Form message', $messages['bar']['isEmpty']);
     }
@@ -4609,14 +4609,14 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $errorString = 'This element made a booboo';
         $element->addError($errorString);
         $errorMessages = $element->getErrorMessages();
-        $this->assertSame(1, count($errorMessages));
+        $this->assertCount(1, $errorMessages);
         $this->assertSame($errorString, $errorMessages[0]);
 
         $element2 = new Zend_Form_Element_Text('bar');
         $this->form->addElement($element2);
         $this->form->getElement('bar')->addError($errorString);
         $errorMessages2 = $this->form->getElement('bar')->getErrorMessages();
-        $this->assertSame(1, count($errorMessages2));
+        $this->assertCount(1, $errorMessages2);
         $this->assertSame($errorString, $errorMessages2[0]);
     }
 

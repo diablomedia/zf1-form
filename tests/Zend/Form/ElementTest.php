@@ -796,7 +796,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
 
         $this->element->isValid('');
         $messages = $this->element->getMessages();
-        $this->assertEquals(1, count($messages));
+        $this->assertCount(1, $messages);
         $this->assertEquals($message, current($messages));
     }
 
@@ -845,7 +845,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->element->addErrorMessage('Invalid value entered');
         $this->assertFalse($this->element->isValid(123));
         $messages = $this->element->getMessages();
-        $this->assertEquals(1, count($messages));
+        $this->assertCount(1, $messages);
         $this->assertEquals('Invalid value entered', array_shift($messages));
     }
 
@@ -855,11 +855,11 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->element->addErrorMessage('Invalid value entered');
         $this->element->addErrorMessage('Really, it is not valid');
         $messages = $this->element->getErrorMessages();
-        $this->assertEquals(2, count($messages));
+        $this->assertCount(2, $messages);
 
         $this->assertFalse($this->element->isValid(123));
         $messages = $this->element->getMessages();
-        $this->assertEquals(2, count($messages));
+        $this->assertCount(2, $messages);
         $this->assertEquals('Invalid value entered', array_shift($messages));
         $this->assertEquals('Really, it is not valid', array_shift($messages));
     }
@@ -900,7 +900,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
                       ->addValidator('Alpha');
         $this->assertFalse($this->element->isValid(123));
         $messages = $this->element->getMessages();
-        $this->assertEquals(1, count($messages));
+        $this->assertCount(1, $messages);
         $this->assertEquals('Foo message', array_shift($messages));
     }
 
@@ -911,7 +911,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($this->element->isValid(123));
         $this->assertTrue($this->element->hasErrors());
         $messages = $this->element->getMessages();
-        $this->assertEquals(1, count($messages));
+        $this->assertCount(1, $messages);
         $this->assertEquals('"123" is an invalid value', array_shift($messages));
     }
 
@@ -923,7 +923,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->element->markAsError();
         $this->assertTrue($this->element->hasErrors());
         $messages = $this->element->getMessages();
-        $this->assertEquals(1, count($messages));
+        $this->assertCount(1, $messages);
         $this->assertEquals('Invalid value entered', array_shift($messages));
     }
 
@@ -936,7 +936,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
                       ->addErrors(array('Error 4', 'Error 5'));
         $this->assertTrue($this->element->hasErrors());
         $messages = $this->element->getMessages();
-        $this->assertEquals(5, count($messages));
+        $this->assertCount(5, $messages);
         foreach (range(1, 5) as $id) {
             $message = 'Error ' . $id;
             $this->assertContains($message, $messages);
@@ -2032,13 +2032,13 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
                       ->addValidator('Alpha');
         $this->assertFalse($this->element->isValid(123));
         $messages = $this->element->getMessages();
-        $this->assertEquals(1, count($messages));
+        $this->assertCount(1, $messages);
         $this->assertEquals('Foo message', array_shift($messages));
 
         $this->element->setDisableTranslator(true);
         $this->assertFalse($this->element->isValid(123));
         $messages = $this->element->getMessages();
-        $this->assertEquals(1, count($messages));
+        $this->assertCount(1, $messages);
         $this->assertEquals('foo', array_shift($messages));
     }
 

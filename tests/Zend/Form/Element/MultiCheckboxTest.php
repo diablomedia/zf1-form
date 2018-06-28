@@ -282,7 +282,7 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
 
         // Empty value + AllowEmpty=true = no error messages
         $messages = $this->element->getMessages();
-        $this->assertEquals(0, count($messages), 'Received unexpected error message(s)');
+        $this->assertCount(0, $messages, 'Received unexpected error message(s)');
 
         $this->element->setAllowEmpty(false);
         $this->assertFalse($this->element->isValid(array()));
