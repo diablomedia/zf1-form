@@ -1386,7 +1386,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
             } else {
                 $merge = $this->_attachToArray(
                     $subForm->getValues(true),
-                                               $subForm->getElementsBelongTo()
+                    $subForm->getElementsBelongTo()
                 );
             }
             $values = $this->_array_replace_recursive($values, $merge);
@@ -2569,7 +2569,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
             } else {
                 $merge = $this->_attachToArray(
                     $subForm->getErrors(null, true),
-                                               $subForm->getElementsBelongTo()
+                    $subForm->getElementsBelongTo()
                 );
             }
             $errors = $this->_array_replace_recursive($errors, $merge);
@@ -2634,7 +2634,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
                 } else {
                     $merge = $this->_attachToArray(
                         $merge,
-                                                   $subForm->getElementsBelongTo()
+                        $subForm->getElementsBelongTo()
                     );
                 }
                 $messages = $this->_array_replace_recursive($messages, $merge);

@@ -1672,16 +1672,16 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
                           ->addElement('text', 'foo')
                           ->foo->addValidator(
                               'Identical',
-                                              false,
-                                              array('foo Value')
+                              false,
+                              array('foo Value')
                           );
 
         $this->form->$sub0->addSubForm(new Zend_Form_SubForm(), $sub0)
                           ->$sub0->addElement('text', 'quo')
                                  ->quo->addValidator(
                                      'Identical',
-                                                     false,
-                                                     array('quo Value')
+                                     false,
+                                     array('quo Value')
                                  );
 
         $data = array('valid' => array('f' =>
@@ -1737,16 +1737,16 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
                         ->setRequired(true)
                         ->addValidator(
                             'Identical',
-                                       false,
-                                       'foo Value'
+                            false,
+                            'foo Value'
                         );
 
         $this->form->addElement('text', 'quo')
                    ->quo->setBelongsTo('bar[quo]')
                         ->addValidator(
                             'Identical',
-                                       false,
-                                       'quo Value'
+                            false,
+                            'quo Value'
                         );
 
         $data = array('valid' => array('bar' =>
@@ -2802,8 +2802,8 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
                    ->quo->setBelongsTo('bar[quo]')
                         ->addValidator(
                             'Callback',
-                                       false,
-                                       $callback
+                            false,
+                            $callback
                         );
 
         return array('bar' => array('quo' => array('foo' => 'foo Value',
