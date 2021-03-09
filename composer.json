@@ -24,7 +24,8 @@
         "diablomedia/zendframework1-translate": "^1.0.0",
         "diablomedia/zendframework1-validate": "^1.0.0",
         "diablomedia/zendframework1-view": "^1.0.0",
-        "diablomedia/zendframework1-view-helper-partial": "^1.0.0"
+        "diablomedia/zendframework1-view-helper-partial": "^1.0.0",
+        "diablomedia/zendframework1-xml": "^1.0.5"
     },
     "autoload": {
         "psr-0": {
