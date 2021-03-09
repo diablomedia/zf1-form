@@ -39,7 +39,7 @@ class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         if (isset($this->hash)) {
             unset($this->hash);
@@ -59,7 +59,7 @@ class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -91,7 +91,7 @@ class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
     {
         $ttl = $this->element->getTimeout();
         $this->assertNotEmpty($ttl);
-        $this->assertInternalType('int', $ttl);
+        $this->assertIsInt($ttl);
     }
 
     public function testCanSetTimeout()
@@ -106,7 +106,7 @@ class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
     {
         $hash = $this->element->getHash();
         $this->assertNotEmpty($hash);
-        $this->assertInternalType('string', $hash);
+        $this->assertIsString($hash);
         $this->hash = $hash;
     }
 
@@ -131,8 +131,8 @@ class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
     public function testSessionNameContainsSaltAndName()
     {
         $sessionName = $this->element->getSessionName();
-        $this->assertContains($this->element->getSalt(), $sessionName);
-        $this->assertContains($this->element->getName(), $sessionName);
+        $this->assertStringContainsString($this->element->getSalt(), $sessionName);
+        $this->assertStringContainsString($this->element->getName(), $sessionName);
     }
 
     public function getView()
@@ -167,7 +167,7 @@ class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
     public function testHashTokenIsRendered()
     {
         $html = $this->element->render($this->getView());
-        $this->assertContains($this->element->getHash(), $html);
+        $this->assertStringContainsString($this->element->getHash(), $html);
     }
 
     public function testHiddenInputRenderedByDefault()
@@ -183,7 +183,7 @@ class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
     {
         $this->element->setView($this->getView());
         $html = $this->element->renderViewHelper();
-        $this->assertContains($this->element->getHash(), $html, 'Html is: ' . $html);
+        $this->assertStringContainsString($this->element->getHash(), $html, 'Html is: ' . $html);
     }
 
     /**

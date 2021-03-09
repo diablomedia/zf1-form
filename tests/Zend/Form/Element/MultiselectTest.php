@@ -44,7 +44,7 @@ class Zend_Form_Element_MultiselectTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->element = new Zend_Form_Element_Multiselect('foo');
     }
@@ -55,7 +55,7 @@ class Zend_Form_Element_MultiselectTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -118,7 +118,7 @@ class Zend_Form_Element_MultiselectTest extends PHPUnit\Framework\TestCase
     public function testMultiOptionsEmptyByDefault()
     {
         $options = $this->element->getMultiOptions();
-        $this->assertInternalType('array', $options);
+        $this->assertIsArray($options);
         $this->assertEmpty($options);
     }
 
@@ -219,7 +219,7 @@ class Zend_Form_Element_MultiselectTest extends PHPUnit\Framework\TestCase
 
         $html = $this->element->render($this->getView());
         foreach ($options as $value => $label) {
-            $this->assertNotContains($label, $html, $html);
+            $this->assertStringNotContainsString($label, $html, $html);
             $this->assertRegExp('/<option.*value="' . $value . '"[^>]*>' . $translations[$label] . '/s', $html, $html);
         }
     }
@@ -293,7 +293,7 @@ class Zend_Form_Element_MultiselectTest extends PHPUnit\Framework\TestCase
         $this->element->setValue('barValue');
 
         $html = $this->element->render($this->getView());
-        $this->assertContains($translations['ThisIsTheLabel'], $html, $html);
+        $this->assertStringContainsString($translations['ThisIsTheLabel'], $html, $html);
     }
 
     /**

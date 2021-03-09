@@ -39,7 +39,7 @@ class Zend_Form_Decorator_ErrorsTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->decorator = new Zend_Form_Decorator_Errors();
     }
@@ -50,7 +50,7 @@ class Zend_Form_Decorator_ErrorsTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -85,9 +85,9 @@ class Zend_Form_Decorator_ErrorsTest extends PHPUnit\Framework\TestCase
         $this->setupElement();
         $content = 'test content';
         $test    = $this->decorator->render($content);
-        $this->assertContains($content, $test);
+        $this->assertStringContainsString($content, $test);
         foreach ($this->element->getMessages() as $message) {
-            $this->assertContains($message, $test);
+            $this->assertStringContainsString($message, $test);
         }
     }
 
@@ -113,7 +113,7 @@ class Zend_Form_Decorator_ErrorsTest extends PHPUnit\Framework\TestCase
         $this->setupElement();
         $content = 'test content';
         $test    = $this->decorator->render($content);
-        $this->assertContains($content . PHP_EOL . '<ul', $test);
+        $this->assertStringContainsString($content . PHP_EOL . '<ul', $test);
     }
 
     public function testRenderSeparatesContentAndErrorsWithCustomSeparatorWhenRequested()
@@ -122,7 +122,7 @@ class Zend_Form_Decorator_ErrorsTest extends PHPUnit\Framework\TestCase
         $this->setupElement();
         $content = 'test content';
         $test    = $this->decorator->render($content);
-        $this->assertContains($content . $this->decorator->getSeparator() . '<ul', $test, $test);
+        $this->assertStringContainsString($content . $this->decorator->getSeparator() . '<ul', $test, $test);
     }
 
     /**

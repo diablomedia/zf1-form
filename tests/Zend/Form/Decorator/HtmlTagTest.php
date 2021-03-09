@@ -39,7 +39,7 @@ class Zend_Form_Decorator_HtmlTagTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->decorator = new Zend_Form_Decorator_HtmlTag();
     }
@@ -50,7 +50,7 @@ class Zend_Form_Decorator_HtmlTagTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -77,10 +77,10 @@ class Zend_Form_Decorator_HtmlTagTest extends PHPUnit\Framework\TestCase
         $html = $this->decorator->render('');
         foreach ($options as $key => $value) {
             if ('tag' == $key) {
-                $this->assertContains('<' . $value, $html);
-                $this->assertContains('</' . $value . '>', $html);
+                $this->assertStringContainsString('<' . $value, $html);
+                $this->assertStringContainsString('</' . $value . '>', $html);
             } else {
-                $this->assertContains($key . '="' . $value . '"', $html);
+                $this->assertStringContainsString($key . '="' . $value . '"', $html);
             }
         }
     }
@@ -94,10 +94,10 @@ class Zend_Form_Decorator_HtmlTagTest extends PHPUnit\Framework\TestCase
         $html = $this->decorator->render('');
         foreach ($options as $key => $value) {
             if ('tag' == $key) {
-                $this->assertContains('<' . $value, $html);
-                $this->assertContains('</' . $value . '>', $html);
+                $this->assertStringContainsString('<' . $value, $html);
+                $this->assertStringContainsString('</' . $value . '>', $html);
             } else {
-                $this->assertNotContains($key . '="' . (string) $value . '"', $html);
+                $this->assertStringNotContainsString($key . '="' . (string) $value . '"', $html);
             }
         }
     }
@@ -111,12 +111,12 @@ class Zend_Form_Decorator_HtmlTagTest extends PHPUnit\Framework\TestCase
         $html = $this->decorator->render('');
         foreach ($options as $key => $value) {
             if ('tag' == $key) {
-                $this->assertContains('<' . $value, $html);
-                $this->assertNotContains('</' . $value . '>', $html);
+                $this->assertStringContainsString('<' . $value, $html);
+                $this->assertStringNotContainsString('</' . $value . '>', $html);
             } elseif ('openOnly' == $key) {
-                $this->assertNotContains($key, $html);
+                $this->assertStringNotContainsString($key, $html);
             } else {
-                $this->assertContains($key . '="' . (string) $value . '"', $html);
+                $this->assertStringContainsString($key . '="' . (string) $value . '"', $html);
             }
         }
     }
@@ -130,10 +130,10 @@ class Zend_Form_Decorator_HtmlTagTest extends PHPUnit\Framework\TestCase
         $html = $this->decorator->render('');
         foreach ($options as $key => $value) {
             if ('tag' == $key) {
-                $this->assertNotContains('<' . $value, $html);
-                $this->assertContains('</' . $value . '>', $html);
+                $this->assertStringNotContainsString('<' . $value, $html);
+                $this->assertStringContainsString('</' . $value . '>', $html);
             } else {
-                $this->assertNotContains($key . '="' . (string) $value . '"', $html);
+                $this->assertStringNotContainsString($key . '="' . (string) $value . '"', $html);
             }
         }
     }
@@ -145,7 +145,7 @@ class Zend_Form_Decorator_HtmlTagTest extends PHPUnit\Framework\TestCase
         $this->decorator->setElement($element)
                         ->setOptions($options);
         $html = $this->decorator->render('');
-        $this->assertContains('class="foobar bazbat"', $html);
+        $this->assertStringContainsString('class="foobar bazbat"', $html);
     }
 
     public function testAppendPlacementWithCloseOnlyRendersClosingTagFollowingContent()

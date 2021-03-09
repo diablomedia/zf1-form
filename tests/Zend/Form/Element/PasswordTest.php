@@ -39,7 +39,7 @@ class Zend_Form_Element_PasswordTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->errors  = array();
         $this->element = new Zend_Form_Element_Password('foo');
@@ -51,7 +51,7 @@ class Zend_Form_Element_PasswordTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -91,8 +91,8 @@ class Zend_Form_Element_PasswordTest extends PHPUnit\Framework\TestCase
         $expect = '*******';
         $this->assertFalse($this->element->isValid($value));
         foreach ($this->element->getMessages() as $message) {
-            $this->assertNotContains($value, $message);
-            $this->assertContains($expect, $message, $message);
+            $this->assertStringNotContainsString($value, $message);
+            $this->assertStringContainsString($expect, $message, $message);
         }
     }
 
@@ -148,10 +148,10 @@ class Zend_Form_Element_PasswordTest extends PHPUnit\Framework\TestCase
         $this->element->setValue('foobar')
                       ->setView(new Zend_View());
         $test = $this->element->render();
-        $this->assertContains('value=""', $test);
+        $this->assertStringContainsString('value=""', $test);
 
         $this->element->setRenderPassword(true);
         $test = $this->element->render();
-        $this->assertContains('value="foobar"', $test);
+        $this->assertStringContainsString('value="foobar"', $test);
     }
 }

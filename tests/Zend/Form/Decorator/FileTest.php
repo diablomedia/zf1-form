@@ -39,7 +39,7 @@ class Zend_Form_Decorator_FileTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->decorator = new Zend_Form_Decorator_File();
     }
@@ -50,7 +50,7 @@ class Zend_Form_Decorator_FileTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 

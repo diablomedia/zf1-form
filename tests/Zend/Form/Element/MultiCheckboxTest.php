@@ -39,7 +39,7 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->element = new Zend_Form_Element_MultiCheckbox('foo');
     }
@@ -50,7 +50,7 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -133,7 +133,7 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
             ))
             ->setSeparator('--FooBarFunSep--');
         $html = $this->element->render($this->getView());
-        $this->assertContains($this->element->getSeparator(), $html);
+        $this->assertStringContainsString($this->element->getSeparator(), $html);
         $count = substr_count($html, $this->element->getSeparator());
         $this->assertEquals(4, $count);
     }
@@ -146,7 +146,7 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
         $this->element->addMultiOption(1, 'A');
         $this->element->addMultiOption(2, 'B');
         $html = $this->element->render($this->getView());
-        $this->assertContains('name="foo[]"', $html, $html);
+        $this->assertStringContainsString('name="foo[]"', $html, $html);
         $count = substr_count($html, 'name="foo[]"');
         $this->assertEquals(2, $count);
     }
@@ -183,7 +183,7 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
             if (!preg_match('#(<input[^>]*' . $key . '[^>]*>)#', $html, $m)) {
                 $this->fail('Missing input for a given multi option: ' . $html);
             }
-            $this->assertContains('checked="checked"', $m[1]);
+            $this->assertStringContainsString('checked="checked"', $m[1]);
         }
     }
 
@@ -289,7 +289,7 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
 
         // Empty value + AllowEmpty=false = notInArray error message
         $messages = $this->element->getMessages();
-        $this->assertInternalType('array', $messages, 'Expected error message');
+        $this->assertIsArray($messages, 'Expected error message');
         $this->assertArrayHasKey('notInArray', $messages, 'Expected \'notInArray\' error message');
 
         $this->element->setRequired(true)->setAllowEmpty(false);
@@ -297,7 +297,7 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
 
         // Empty value + Required=true + AllowEmpty=false = isEmpty error message
         $messages = $this->element->getMessages();
-        $this->assertInternalType('array', $messages, 'Expected error message');
+        $this->assertIsArray($messages, 'Expected error message');
         $this->assertArrayHasKey('isEmpty', $messages, 'Expected \'isEmpty\' error message');
     }
 

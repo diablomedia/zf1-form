@@ -39,7 +39,7 @@ class Zend_Form_Decorator_FormTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->decorator = new Zend_Form_Decorator_Form();
     }
@@ -50,7 +50,7 @@ class Zend_Form_Decorator_FormTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -98,7 +98,7 @@ class Zend_Form_Decorator_FormTest extends PHPUnit\Framework\TestCase
              ->setAttrib('id', 'bazbat')
              ->setView($this->getView());
         $html = $form->render();
-        $this->assertContains('id="bazbat"', $html, $html);
+        $this->assertStringContainsString('id="bazbat"', $html, $html);
     }
 
     public function testEmptyFormNameShouldNotRenderEmptyFormId()
@@ -108,6 +108,6 @@ class Zend_Form_Decorator_FormTest extends PHPUnit\Framework\TestCase
              ->setAction('/foo/bar')
              ->setView($this->getView());
         $html = $form->render();
-        $this->assertNotContains('id=""', $html, $html);
+        $this->assertStringNotContainsString('id=""', $html, $html);
     }
 }

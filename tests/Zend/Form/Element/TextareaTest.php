@@ -39,7 +39,7 @@ class Zend_Form_Element_TextareaTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->element = new Zend_Form_Element_Textarea('foo');
     }
@@ -50,7 +50,7 @@ class Zend_Form_Element_TextareaTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 

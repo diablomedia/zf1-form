@@ -39,7 +39,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->decorator = new Zend_Form_Decorator_Label();
     }
@@ -50,7 +50,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -91,7 +91,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
         $this->decorator->setElement($element);
         $content = 'test content';
         $test    = $this->decorator->render($content);
-        $this->assertContains('for="foobar"', $test);
+        $this->assertStringContainsString('for="foobar"', $test);
     }
 
     public function testRenderAddsOptionalClassForNonRequiredElements()
@@ -159,10 +159,10 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
         $this->decorator->setElement($element);
         $content = 'test content';
         $test    = $this->decorator->render($content);
-        $this->assertNotContains('-req-prefix-', $test, $test);
-        $this->assertNotContains('-req-suffix-', $test, $test);
-        $this->assertContains('-opt-prefix-', $test, $test);
-        $this->assertContains('-opt-suffix-', $test, $test);
+        $this->assertStringNotContainsString('-req-prefix-', $test, $test);
+        $this->assertStringNotContainsString('-req-suffix-', $test, $test);
+        $this->assertStringContainsString('-opt-prefix-', $test, $test);
+        $this->assertStringContainsString('-opt-suffix-', $test, $test);
         $this->assertRegExp('/-opt-prefix-[^-]*?My Label[^-]*-opt-suffix-/s', $test, $test);
     }
 
@@ -181,10 +181,10 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
         $this->decorator->setElement($element);
         $content = 'test content';
         $test    = $this->decorator->render($content);
-        $this->assertNotContains('-opt-prefix-', $test, $test);
-        $this->assertNotContains('-opt-suffix-', $test, $test);
-        $this->assertContains('-req-prefix-', $test, $test);
-        $this->assertContains('-req-suffix-', $test, $test);
+        $this->assertStringNotContainsString('-opt-prefix-', $test, $test);
+        $this->assertStringNotContainsString('-opt-suffix-', $test, $test);
+        $this->assertStringContainsString('-req-prefix-', $test, $test);
+        $this->assertStringContainsString('-req-suffix-', $test, $test);
         $this->assertRegExp('/-req-prefix-[^-]*?My Label[^-]*-req-suffix-/s', $test, $test);
     }
 
@@ -211,10 +211,10 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
         $this->decorator->setElement($element);
         $content = 'test content';
         $test    = $this->decorator->render($content);
-        $this->assertContains($content, $test);
-        $this->assertContains($element->getLabel(), $test);
-        $this->assertContains('<label for=', $test);
-        $this->assertContains('</label>', $test);
+        $this->assertStringContainsString($content, $test);
+        $this->assertStringContainsString($element->getLabel(), $test);
+        $this->assertStringContainsString('<label for=', $test);
+        $this->assertStringContainsString('</label>', $test);
     }
 
     public function testRenderAppendsOnRequest()
@@ -237,7 +237,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
         $this->decorator->setElement($element)
                         ->setOptions(array('escape' => false));
         $test = $this->decorator->render('');
-        $this->assertContains($element->getLabel(), $test);
+        $this->assertStringContainsString($element->getLabel(), $test);
     }
 
     public function testRetrievingLabelRetrievesLabelWithTranslationAndPrefixAndSuffix()
