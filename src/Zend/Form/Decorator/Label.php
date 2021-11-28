@@ -304,7 +304,7 @@ class Zend_Form_Decorator_Label extends Zend_Form_Decorator_Abstract
         }
 
         $label = $element->getLabel();
-        $label = trim($label);
+        $label = trim((string) $label);
 
         if (empty($label)) {
             return '';
