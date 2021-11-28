@@ -107,6 +107,8 @@ class Zend_Form_Decorator_FormErrors extends Zend_Form_Decorator_Abstract
             case self::PREPEND:
                 return $markup . $this->getSeparator() . $content;
         }
+
+        return '';
     }
 
     /**

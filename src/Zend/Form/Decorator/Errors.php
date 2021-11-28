@@ -70,5 +70,7 @@ class Zend_Form_Decorator_Errors extends Zend_Form_Decorator_Abstract
             case self::PREPEND:
                 return $errors . $separator . $content;
         }
+
+        return '';
     }
 }
