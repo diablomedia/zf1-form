@@ -1059,8 +1059,11 @@ class Zend_Form_DisplayGroup implements Iterator, Countable
 
     /**
      * Move pointer to next element
+     *
+     * @return void
      */
-    public function next(): void
+    #[\ReturnTypeWillChange]
+    public function next()
     {
         $this->_sort();
         next($this->_elementOrder);
@@ -1068,8 +1071,11 @@ class Zend_Form_DisplayGroup implements Iterator, Countable
 
     /**
      * Move pointer to beginning of element loop
+     *
+     * @return void
      */
-    public function rewind(): void
+    #[\ReturnTypeWillChange]
+    public function rewind()
     {
         $this->_sort();
         reset($this->_elementOrder);
@@ -1077,8 +1083,11 @@ class Zend_Form_DisplayGroup implements Iterator, Countable
 
     /**
      * Determine if current element/subform/display group is valid
+     *
+     * @return bool
      */
-    public function valid(): bool
+    #[\ReturnTypeWillChange]
+    public function valid()
     {
         $this->_sort();
         return (current($this->_elementOrder) !== false);
@@ -1086,8 +1095,11 @@ class Zend_Form_DisplayGroup implements Iterator, Countable
 
     /**
      * Count of elements/subforms that are iterable
+     *
+     * @return int
      */
-    public function count(): int
+    #[\ReturnTypeWillChange]
+    public function count()
     {
         return count($this->_elements);
     }
