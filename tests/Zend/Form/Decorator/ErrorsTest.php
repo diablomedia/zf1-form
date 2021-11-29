@@ -96,7 +96,7 @@ class Zend_Form_Decorator_ErrorsTest extends PHPUnit\Framework\TestCase
         $this->setupElement();
         $content = 'test content';
         $test    = $this->decorator->render($content);
-        $this->assertRegExp('#' . $content . '.*?<ul#s', $test, $test);
+        $this->assertMatchesRegularExpression('#' . $content . '.*?<ul#s', $test, $test);
     }
 
     public function testRenderPrependsMessagesToContentWhenRequested()
@@ -105,7 +105,7 @@ class Zend_Form_Decorator_ErrorsTest extends PHPUnit\Framework\TestCase
         $this->setupElement();
         $content = 'test content';
         $test    = $this->decorator->render($content);
-        $this->assertRegExp('#</ul>.*?' . $content . '#s', $test);
+        $this->assertMatchesRegularExpression('#</ul>.*?' . $content . '#s', $test);
     }
 
     public function testRenderSeparatesContentAndErrorsWithPhpEolByDefault()

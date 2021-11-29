@@ -66,8 +66,6 @@ class Zend_Form_Element_ImageTest extends PHPUnit\Framework\TestCase
 
     public function testImageElementUsesImageDecoratorByDefault()
     {
-        $this->_checkZf2794();
-
         $decorator = $this->element->getDecorator('Image');
         $this->assertTrue($decorator instanceof Zend_Form_Decorator_Image);
     }
@@ -121,7 +119,7 @@ class Zend_Form_Element_ImageTest extends PHPUnit\Framework\TestCase
     {
         $this->element->setLabel('Foo Bar');
         $html = $this->element->render(new Zend_View());
-        $this->assertRegExp('#<input[^>]*alt="Foo Bar"#', $html);
+        $this->assertMatchesRegularExpression('#<input[^>]*alt="Foo Bar"#', $html);
     }
 
     public function testImageValueRenderedAsElementValue()
@@ -129,7 +127,7 @@ class Zend_Form_Element_ImageTest extends PHPUnit\Framework\TestCase
         $this->element->setImageValue('foo')
              ->setImage('foo.gif');
         $html = $this->element->render(new Zend_View());
-        $this->assertRegExp('#<input[^>]*value="foo"#', $html, $html);
+        $this->assertMatchesRegularExpression('#<input[^>]*value="foo"#', $html, $html);
     }
 
     public function testIsCheckedReturnsSetValueMatchesImageValue()
@@ -170,19 +168,6 @@ class Zend_Form_Element_ImageTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('title', $html);
         $this->assertStringContainsString('bar', $html);
         $this->assertStringNotContainsString('baz', $html);
-    }
-
-    /**
-     * Used by test methods susceptible to ZF-2794, marks a test as incomplete
-     *
-     * @link   http://framework.zend.com/issues/browse/ZF-2794
-     * @return void
-     */
-    protected function _checkZf2794()
-    {
-        if (strtolower(substr(PHP_OS, 0, 3)) == 'win' && version_compare(PHP_VERSION, '5.1.4', '=')) {
-            $this->markTestIncomplete('Error occurs for PHP 5.1.4 on Windows');
-        }
     }
 
     /**

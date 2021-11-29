@@ -128,7 +128,7 @@ class Zend_Form_Decorator_ViewHelperTest extends PHPUnit\Framework\TestCase
         $content = 'test content';
         $test    = $this->decorator->render($content);
         $this->assertStringContainsString($content, $test);
-        $this->assertRegExp('#<input.*?name="foo"#s', $test);
+        $this->assertMatchesRegularExpression('#<input.*?name="foo"#s', $test);
     }
 
     public function testMultiOptionsPassedToViewHelperAreTranslated()

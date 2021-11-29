@@ -190,8 +190,6 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 
     public function testDefaultDecoratorsRegistered()
     {
-        $this->_checkZf2794();
-
         $decorator = $this->group->getDecorator('FormElements');
         $this->assertTrue($decorator instanceof Zend_Form_Decorator_FormElements);
         $decorator = $this->group->getDecorator('Fieldset');
@@ -221,8 +219,6 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 
     public function testCanAddSingleDecoratorAsString()
     {
-        $this->_checkZf2794();
-
         $this->group->clearDecorators();
         $this->assertFalse($this->group->getDecorator('form'));
 
@@ -249,8 +245,6 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 
     public function testCanRetrieveSingleDecoratorRegisteredAsDecoratorObjectUsingShortName()
     {
-        $this->_checkZf2794();
-
         $this->group->clearDecorators();
         $this->assertFalse($this->group->getDecorator('form'));
 
@@ -262,8 +256,6 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 
     public function testCanAddMultipleDecorators()
     {
-        $this->_checkZf2794();
-
         $this->group->clearDecorators();
         $this->assertFalse($this->group->getDecorator('form'));
 
@@ -281,8 +273,6 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 
     public function testCanRemoveDecorator()
     {
-        $this->_checkZf2794();
-
         $this->testDefaultDecoratorsRegistered();
         $this->group->removeDecorator('form');
         $this->assertFalse($this->group->getDecorator('form'));
@@ -293,7 +283,6 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
      */
     public function testRemovingNamedDecoratorsShouldWork()
     {
-        $this->_checkZf2794();
         $this->group->setDecorators(array(
             'FormElements',
             array(array('div' => 'HtmlTag'), array('tag' => 'div')),
@@ -311,8 +300,6 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 
     public function testCanClearAllDecorators()
     {
-        $this->_checkZf2794();
-
         $this->testCanAddMultipleDecorators();
         $this->group->clearDecorators();
         $this->assertFalse($this->group->getDecorator('viewHelper'));
@@ -321,8 +308,6 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 
     public function testCanAddDecoratorAliasesToAllowMultipleDecoratorsOfSameType()
     {
-        $this->_checkZf2794();
-
         $this->group->setDecorators(array(
             array('HtmlTag', array('tag' => 'fieldset')),
             array('decorator' => array('FooBar' => 'HtmlTag'), 'options' => array('tag' => 'dd')),
@@ -375,7 +360,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 
         $this->group->addElements(array($foo, $bar));
         $html = $this->group->render($this->getView());
-        $this->assertRegExp('#^<dt[^>]*>&\#160;</dt><dd[^>]*><fieldset.*?</fieldset></dd>$#s', $html, $html);
+        $this->assertMatchesRegularExpression('#^<dt[^>]*>&\#160;</dt><dd[^>]*><fieldset.*?</fieldset></dd>$#s', $html, $html);
         $this->assertStringContainsString('<input', $html, $html);
         $this->assertStringContainsString('"foo"', $html);
         $this->assertStringContainsString('"bar"', $html);
@@ -389,7 +374,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
         $this->group->addElements(array($foo, $bar))
                     ->setView($this->getView());
         $html = $this->group->__toString();
-        $this->assertRegExp('#^<dt[^>]*>&\#160;</dt><dd[^>]*><fieldset.*?</fieldset></dd>$#s', $html, $html);
+        $this->assertMatchesRegularExpression('#^<dt[^>]*>&\#160;</dt><dd[^>]*><fieldset.*?</fieldset></dd>$#s', $html, $html);
         $this->assertStringContainsString('<input', $html);
         $this->assertStringContainsString('"foo"', $html);
         $this->assertStringContainsString('"bar"', $html);
@@ -576,8 +561,6 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 
     public function testSetOptionsSetsArrayOfStringDecorators()
     {
-        $this->_checkZf2794();
-
         $options               = $this->getOptions();
         $options['decorators'] = array('label', 'form');
         $this->group->setOptions($options);
@@ -591,8 +574,6 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 
     public function testSetOptionsSetsArrayOfArrayDecorators()
     {
-        $this->_checkZf2794();
-
         $options               = $this->getOptions();
         $options['decorators'] = array(
             array('label', array('id' => 'mylabel')),
@@ -614,8 +595,6 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 
     public function testSetOptionsSetsArrayOfAssocArrayDecorators()
     {
-        $this->_checkZf2794();
-
         $options               = $this->getOptions();
         $options['decorators'] = array(
             array(
@@ -745,19 +724,6 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
         $this->expectException(\Zend_Form_Exception::class);
 
         $html = $this->group->bogusMethodCall();
-    }
-
-    /**
-     * Used by test methods susceptible to ZF-2794, marks a test as incomplete
-     *
-     * @link   http://framework.zend.com/issues/browse/ZF-2794
-     * @return void
-     */
-    protected function _checkZf2794()
-    {
-        if (strtolower(substr(PHP_OS, 0, 3)) == 'win' && version_compare(PHP_VERSION, '5.1.4', '=')) {
-            $this->markTestIncomplete('Error occurs for PHP 5.1.4 on Windows');
-        }
     }
 
     /**

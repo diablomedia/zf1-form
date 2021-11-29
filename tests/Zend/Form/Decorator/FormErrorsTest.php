@@ -154,7 +154,7 @@ class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
         $this->setupForm();
         $content = 'test content';
         $test    = $this->decorator->render($content);
-        $this->assertRegExp('#' . $content . '.*?<ul#s', $test, $test);
+        $this->assertMatchesRegularExpression('#' . $content . '.*?<ul#s', $test, $test);
     }
 
     public function testRenderPrependsMessagesToContentWhenRequested()
@@ -163,7 +163,7 @@ class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
         $this->setupForm();
         $content = 'test content';
         $test    = $this->decorator->render($content);
-        $this->assertRegExp('#</ul>.*?' . $content . '#s', $test);
+        $this->assertMatchesRegularExpression('#</ul>.*?' . $content . '#s', $test);
     }
 
     public function testRenderSeparatesContentAndErrorsWithPhpEolByDefault()
@@ -274,7 +274,7 @@ class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
 
         $this->decorator->setOnlyCustomFormErrors(true);
         $html = $this->form->render();
-        $this->assertNotRegExp('/form-errors.*?Master Foo/', $html);
+        $this->assertDoesNotMatchRegularExpression('/form-errors.*?Master Foo/', $html);
 
         $this->decorator->setShowCustomFormErrors(false);
         $html = $this->form->render();

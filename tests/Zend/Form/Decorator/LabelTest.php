@@ -102,14 +102,14 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
         $this->decorator->setElement($element);
         $content = 'test content';
         $test    = $this->decorator->render($content);
-        $this->assertRegExp('/<label[^>]*?class="[^"]*optional/', $test, $test);
+        $this->assertMatchesRegularExpression('/<label[^>]*?class="[^"]*optional/', $test, $test);
 
         $element->class = 'bar';
         $this->decorator->setOption('class', 'foo');
         $test = $this->decorator->render($content);
-        $this->assertNotRegExp('/<label[^>]*?class="[^"]*bar/', $test, $test);
-        $this->assertRegExp('/<label[^>]*?class="[^"]*foo/', $test, $test);
-        $this->assertRegExp('/<label[^>]*?class="[^"]*optional/', $test, $test);
+        $this->assertDoesNotMatchRegularExpression('/<label[^>]*?class="[^"]*bar/', $test, $test);
+        $this->assertMatchesRegularExpression('/<label[^>]*?class="[^"]*foo/', $test, $test);
+        $this->assertMatchesRegularExpression('/<label[^>]*?class="[^"]*optional/', $test, $test);
     }
 
     public function testRenderAddsRequiredClassForRequiredElements()
@@ -121,14 +121,14 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
         $this->decorator->setElement($element);
         $content = 'test content';
         $test    = $this->decorator->render($content);
-        $this->assertRegExp('/<label[^>]*?class="[^"]*required/', $test, $test);
+        $this->assertMatchesRegularExpression('/<label[^>]*?class="[^"]*required/', $test, $test);
 
         $element->class = 'bar';
         $this->decorator->setOption('class', 'foo');
         $test = $this->decorator->render($content);
-        $this->assertNotRegExp('/<label[^>]*?class="[^"]*bar/', $test, $test);
-        $this->assertRegExp('/<label[^>]*?class="[^"]*foo/', $test, $test);
-        $this->assertRegExp('/<label[^>]*?class="[^"]*required/', $test, $test);
+        $this->assertDoesNotMatchRegularExpression('/<label[^>]*?class="[^"]*bar/', $test, $test);
+        $this->assertMatchesRegularExpression('/<label[^>]*?class="[^"]*foo/', $test, $test);
+        $this->assertMatchesRegularExpression('/<label[^>]*?class="[^"]*required/', $test, $test);
     }
 
     public function testRenderAppendsRequiredClassToClassProvidedInRequiredElement()
@@ -141,8 +141,8 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
         $this->decorator->setElement($element);
         $content = 'test content';
         $test    = $this->decorator->render($content);
-        $this->assertRegExp('/<label[^>]*?class="[^"]*required/', $test, $test);
-        $this->assertNotRegExp('/<label[^>]*?class="[^"]*bazbat/', $test, $test);
+        $this->assertMatchesRegularExpression('/<label[^>]*?class="[^"]*required/', $test, $test);
+        $this->assertDoesNotMatchRegularExpression('/<label[^>]*?class="[^"]*bazbat/', $test, $test);
     }
 
     public function testRenderUtilizesOptionalSuffixesAndPrefixesWhenRequested()
@@ -163,7 +163,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('-req-suffix-', $test, $test);
         $this->assertStringContainsString('-opt-prefix-', $test, $test);
         $this->assertStringContainsString('-opt-suffix-', $test, $test);
-        $this->assertRegExp('/-opt-prefix-[^-]*?My Label[^-]*-opt-suffix-/s', $test, $test);
+        $this->assertMatchesRegularExpression('/-opt-prefix-[^-]*?My Label[^-]*-opt-suffix-/s', $test, $test);
     }
 
     public function testRenderUtilizesRequiredSuffixesAndPrefixesWhenRequested()
@@ -185,7 +185,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('-opt-suffix-', $test, $test);
         $this->assertStringContainsString('-req-prefix-', $test, $test);
         $this->assertStringContainsString('-req-suffix-', $test, $test);
-        $this->assertRegExp('/-req-prefix-[^-]*?My Label[^-]*-req-suffix-/s', $test, $test);
+        $this->assertMatchesRegularExpression('/-req-prefix-[^-]*?My Label[^-]*-req-suffix-/s', $test, $test);
     }
 
     /**
@@ -200,7 +200,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
         $this->decorator->setElement($element);
         $content = 'test content';
         $test    = $this->decorator->render($content);
-        $this->assertNotRegExp('#<label[^>]*(class="[^"]*foobar)[^"]*"#', $test, $test);
+        $this->assertDoesNotMatchRegularExpression('#<label[^>]*(class="[^"]*foobar)[^"]*"#', $test, $test);
     }
 
     public function testRenderRendersLabel()
@@ -226,7 +226,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
                         ->setOptions(array('placement' => 'APPEND'));
         $content = 'test content';
         $test    = $this->decorator->render($content);
-        $this->assertRegExp('#' . $content . '.*?<label#s', $test);
+        $this->assertMatchesRegularExpression('#' . $content . '.*?<label#s', $test);
     }
 
     public function testCanChooseNotToEscapeLabel()

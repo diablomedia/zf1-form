@@ -92,14 +92,14 @@ class Zend_Form_Decorator_FileTest extends PHPUnit\Framework\TestCase
     {
         $this->setupSingleElement();
         $test = $this->decorator->render(null);
-        $this->assertRegExp('#foo#s', $test);
+        $this->assertMatchesRegularExpression('#foo#s', $test);
     }
 
     public function testRenderMultiFiles()
     {
         $this->setupMultiElement();
         $test = $this->decorator->render(null);
-        $this->assertRegExp('#foo\[\]#s', $test);
+        $this->assertMatchesRegularExpression('#foo\[\]#s', $test);
     }
 
     public function setupElementWithMaxFileSize()
@@ -120,8 +120,8 @@ class Zend_Form_Decorator_FileTest extends PHPUnit\Framework\TestCase
 
         $this->setupElementWithMaxFileSize();
         $test = $this->decorator->render(null);
-        $this->assertRegExp('#MAX_FILE_SIZE#s', $test);
-        $this->assertRegExp('#' . $max . '#s', $test);
+        $this->assertMatchesRegularExpression('#MAX_FILE_SIZE#s', $test);
+        $this->assertMatchesRegularExpression('#' . $max . '#s', $test);
     }
 
     public function testPlacementInitiallyAppends()
@@ -146,7 +146,7 @@ class Zend_Form_Decorator_FileTest extends PHPUnit\Framework\TestCase
                         ->setOption('placement', 'prepend');
 
         $file = $this->decorator->render('content');
-        $this->assertRegExp('#<input[^>]*>.*?(content)#s', $file, $file);
+        $this->assertMatchesRegularExpression('#<input[^>]*>.*?(content)#s', $file, $file);
     }
 
     /**
@@ -165,7 +165,7 @@ class Zend_Form_Decorator_FileTest extends PHPUnit\Framework\TestCase
         $mockOutput      = $element->render();
 
         // Ensure the view helper was changed
-        $this->assertRegExp('/FormFileMock/s', $mockOutput);
+        $this->assertMatchesRegularExpression('/FormFileMock/s', $mockOutput);
         $this->assertNotEquals($defaultOutput, $mockOutput);
     }
 

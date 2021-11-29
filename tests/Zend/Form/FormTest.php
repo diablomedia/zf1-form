@@ -206,8 +206,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testSetOptionsSetsArrayOfStringDecorators()
     {
-        $this->_checkZf2794();
-
         $options               = $this->getOptions();
         $options['decorators'] = array('label', 'errors');
         $this->form->setOptions($options);
@@ -221,8 +219,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testSetOptionsSetsArrayOfArrayDecorators()
     {
-        $this->_checkZf2794();
-
         $options               = $this->getOptions();
         $options['decorators'] = array(
             array('label', array('id' => 'mylabel')),
@@ -244,8 +240,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testSetOptionsSetsArrayOfAssocArrayDecorators()
     {
-        $this->_checkZf2794();
-
         $options               = $this->getOptions();
         $options['decorators'] = array(
             array(
@@ -1098,7 +1092,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
                    ->bar->addElement('text', 'foo');
 
         $html = $this->form->setView($this->getView())->render();
-        $this->assertRegExp('/<dd.*?bar-foo.*?>/', $html);
+        $this->assertMatchesRegularExpression('/<dd.*?bar-foo.*?>/', $html);
     }
 
     public function testUseIdForDtTagByDefault()
@@ -1107,7 +1101,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
                    ->bar->addElement('text', 'foo');
 
         $html = $this->form->setView($this->getView())->render();
-        $this->assertRegExp('/<dt.*?bar-foo.*?>/', $html);
+        $this->assertMatchesRegularExpression('/<dt.*?bar-foo.*?>/', $html);
     }
 
     /**
@@ -1625,11 +1619,11 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->form->setView($this->getView())->populate($data['valid']);
         $html = $this->form->render();
 
-        $this->assertRegExp('/value=.foo Value./', $html);
-        $this->assertRegExp('/value=.baz Value./', $html);
-        $this->assertRegExp('/value=.quo Value./', $html);
-        $this->assertRegExp('/value=.zoo Value./', $html);
-        $this->assertRegExp('/value=.iek Value./', $html);
+        $this->assertMatchesRegularExpression('/value=.foo Value./', $html);
+        $this->assertMatchesRegularExpression('/value=.baz Value./', $html);
+        $this->assertMatchesRegularExpression('/value=.quo Value./', $html);
+        $this->assertMatchesRegularExpression('/value=.zoo Value./', $html);
+        $this->assertMatchesRegularExpression('/value=.iek Value./', $html);
     }
 
     public function testGetValidValuesWithElementsBelongTo()
@@ -2012,8 +2006,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanValidateFullFormContainingOnlyElements()
     {
-        $this->_checkZf2794();
-
         $this->setupElements();
         $this->assertTrue($this->form->isValid($this->elementValues));
         $values = array(
@@ -2035,8 +2027,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testValidationTakesElementRequiredFlagsIntoAccount()
     {
-        $this->_checkZf2794();
-
         $this->setupElements();
 
         $this->assertTrue($this->form->isValid(array()));
@@ -2053,8 +2043,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanValidatePartialFormContainingOnlyElements()
     {
-        $this->_checkZf2794();
-
         $this->setupElements();
         $this->form->getElement('foo')->setRequired(true);
         $this->form->getElement('bar')->setRequired(true);
@@ -2084,8 +2072,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testFullDataArrayUsedToValidateSubFormByDefault()
     {
-        $this->_checkZf2794();
-
         $this->setupElements();
         $this->setupSubForm();
         $data = array(
@@ -2129,8 +2115,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testDataKeyWithSameNameAsSubFormIsUsedForValidatingSubForm()
     {
-        $this->_checkZf2794();
-
         $this->setupElements();
         $this->setupSubForm();
         $data = array(
@@ -2228,8 +2212,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanValidatePartialFormContainingSubForms()
     {
-        $this->_checkZf2794();
-
         $this->setupElements();
         $this->setupSubForm();
 
@@ -2261,8 +2243,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanValidatePartialNestedFormsWithElementsBelongingToArrays()
     {
-        $this->_checkZf2794();
-
         $form = new Zend_Form();
         $form->setElementsBelongTo('foobar');
 
@@ -2319,8 +2299,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanValidatePartialNestedFormsWithMultiLevelElementsBelongingToArrays()
     {
-        $this->_checkZf2794();
-
         $form = new Zend_Form();
         $form->setElementsBelongTo('foo[bar]');
 
@@ -2375,8 +2353,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanGetMessagesOfNestedFormsWithMultiLevelElementsBelongingToArrays()
     {
-        $this->_checkZf2794();
-
         $form = new Zend_Form();
         $form->setElementsBelongTo('foo[bar]');
 
@@ -2508,8 +2484,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanRetrieveErrorCodesFromAllElementsAfterFailedValidation()
     {
-        $this->_checkZf2794();
-
         $this->testCanValidateFullFormContainingOnlyElements();
         $codes = $this->form->getErrors();
         $keys  = array('foo', 'bar', 'baz');
@@ -2518,8 +2492,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanRetrieveErrorCodesFromSingleElementAfterFailedValidation()
     {
-        $this->_checkZf2794();
-
         $this->testCanValidateFullFormContainingOnlyElements();
         $codes  = $this->form->getErrors();
         $keys   = array('foo', 'bar', 'baz');
@@ -2530,8 +2502,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanRetrieveErrorMessagesFromAllElementsAfterFailedValidation()
     {
-        $this->_checkZf2794();
-
         $this->testCanValidateFullFormContainingOnlyElements();
         $codes = $this->form->getMessages();
         $keys  = array('foo', 'bar', 'baz');
@@ -2540,8 +2510,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanRetrieveErrorMessagesFromSingleElementAfterFailedValidation()
     {
-        $this->_checkZf2794();
-
         $this->testCanValidateFullFormContainingOnlyElements();
         $codes    = $this->form->getMessages();
         $keys     = array('foo', 'bar', 'baz');
@@ -2552,8 +2520,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testErrorCodesFromSubFormReturnedInSeparateArray()
     {
-        $this->_checkZf2794();
-
         $this->testFullDataArrayUsedToValidateSubFormByDefault();
         $codes = $this->form->getErrors();
         $this->assertArrayHasKey('sub', $codes);
@@ -2564,8 +2530,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanRetrieveErrorCodesFromSingleSubFormAfterFailedValidation()
     {
-        $this->_checkZf2794();
-
         $this->testFullDataArrayUsedToValidateSubFormByDefault();
         $codes = $this->form->getErrors('sub');
         $this->assertIsArray($codes);
@@ -2576,8 +2540,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testGetErrorsHonorsElementsBelongTo()
     {
-        $this->_checkZf2794();
-
         $subForm = new Zend_Form_SubForm();
         $subForm->setElementsBelongTo('foo[bar]');
         $subForm->addElement('text', 'test')->test
@@ -2598,8 +2560,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testErrorMessagesFromSubFormReturnedInSeparateArray()
     {
-        $this->_checkZf2794();
-
         $this->testFullDataArrayUsedToValidateSubFormByDefault();
         $data = array(
             'foo'    => 'abcdef',
@@ -2620,8 +2580,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanRetrieveErrorMessagesFromSingleSubFormAfterFailedValidation()
     {
-        $this->_checkZf2794();
-
         $this->testFullDataArrayUsedToValidateSubFormByDefault();
         $data = array(
             'foo'    => 'abcdef',
@@ -2642,8 +2600,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testErrorMessagesAreLocalizedWhenTranslateAdapterPresent()
     {
-        $this->_checkZf2794();
-
         $translations = include dirname(__FILE__) . '/_files/locale/array.php';
         $translate    = new Zend_Translate('array', $translations, 'en');
         $translate->setLocale('en');
@@ -2696,8 +2652,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testErrorMessagesFromPartialValidationAreLocalizedWhenTranslateAdapterPresent()
     {
-        $this->_checkZf2794();
-
         $translations = include dirname(__FILE__) . '/_files/locale/array.php';
         $translate    = new Zend_Translate('array', $translations, 'en');
         $translate->setLocale('en');
@@ -2742,8 +2696,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testErrorMessagesFromProcessAjaxAreLocalizedWhenTranslateAdapterPresent()
     {
-        $this->_checkZf2794();
-
         $translations = include dirname(__FILE__) . '/_files/locale/array.php';
         $translate    = new Zend_Translate('array', $translations, 'en');
         $translate->setLocale('en');
@@ -2959,8 +2911,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testFormDecoratorRegisteredByDefault()
     {
-        $this->_checkZf2794();
-
         $decorator = $this->form->getDecorator('form');
         $this->assertTrue($decorator instanceof Zend_Form_Decorator_Form);
     }
@@ -2974,8 +2924,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanAddSingleDecoratorAsString()
     {
-        $this->_checkZf2794();
-
         $this->form->clearDecorators();
         $this->assertFalse($this->form->getDecorator('viewHelper'));
 
@@ -3002,8 +2950,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanRetrieveSingleDecoratorRegisteredAsDecoratorObjectUsingShortName()
     {
-        $this->_checkZf2794();
-
         $this->form->clearDecorators();
         $this->assertFalse($this->form->getDecorator('viewHelper'));
 
@@ -3015,8 +2961,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanAddMultipleDecorators()
     {
-        $this->_checkZf2794();
-
         $this->form->clearDecorators();
         $this->assertFalse($this->form->getDecorator('viewHelper'));
 
@@ -3034,15 +2978,11 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testRemoveDecoratorReturnsFalseForUnregisteredDecorators()
     {
-        $this->_checkZf2794();
-
         $this->assertFalse($this->form->removeDecorator('foobar'));
     }
 
     public function testCanRemoveDecorator()
     {
-        $this->_checkZf2794();
-
         $this->testFormDecoratorRegisteredByDefault();
         $this->form->removeDecorator('form');
         $this->assertFalse($this->form->getDecorator('form'));
@@ -3053,7 +2993,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
      */
     public function testRemovingNamedDecoratorShouldWork()
     {
-        $this->_checkZf2794();
         $this->form->setDecorators(array(
             'FormElements',
             array(array('div' => 'HtmlTag'), array('tag' => 'div')),
@@ -3070,8 +3009,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanClearAllDecorators()
     {
-        $this->_checkZf2794();
-
         $this->testCanAddMultipleDecorators();
         $this->form->clearDecorators();
         $this->assertFalse($this->form->getDecorator('viewHelper'));
@@ -3080,8 +3017,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanAddDecoratorAliasesToAllowMultipleDecoratorsOfSameType()
     {
-        $this->_checkZf2794();
-
         $this->form->setDecorators(array(
             array('HtmlTag', array('tag' => 'div')),
             array('decorator' => array('FooBar' => 'HtmlTag'), 'options' => array('tag' => 'dd')),
@@ -3122,9 +3057,9 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
     {
         $this->assertNotEmpty($html);
         $this->assertStringContainsString('<form', $html);
-        $this->assertRegExp('/<form[^>]+action="' . $this->form->getAction() . '"/', $html);
-        $this->assertRegExp('/<form[^>]+method="' . $this->form->getMethod() . '"/i', $html);
-        $this->assertRegExp('#<form[^>]+enctype="application/x-www-form-urlencoded"#', $html);
+        $this->assertMatchesRegularExpression('/<form[^>]+action="' . $this->form->getAction() . '"/', $html);
+        $this->assertMatchesRegularExpression('/<form[^>]+method="' . $this->form->getMethod() . '"/i', $html);
+        $this->assertMatchesRegularExpression('#<form[^>]+enctype="application/x-www-form-urlencoded"#', $html);
         $this->assertStringContainsString('</form>', $html);
     }
 
@@ -3143,7 +3078,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
             $this->assertNotEmpty($key);
             $this->assertIsNotNumeric($key);
             $this->assertStringContainsString('<input', $html);
-            $this->assertRegExp('/<input type="text" name="' . $key . '"/', $html);
+            $this->assertMatchesRegularExpression('/<input type="text" name="' . $key . '"/', $html);
         }
     }
 
@@ -3153,14 +3088,14 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->setupSubForm();
         $this->form->setView($this->getView());
         $html = $this->form->render();
-        $this->assertRegExp('/<fieldset/', $html);
+        $this->assertMatchesRegularExpression('/<fieldset/', $html);
         $this->assertStringContainsString('</fieldset>', $html);
         foreach ($this->form->sub as $key => $item) {
             $this->assertNotEmpty($key);
             $this->assertIsNotNumeric($key);
             $this->assertStringContainsString('<input', $html);
             $pattern = '/<input type="text" name="sub\[' . $key . '\]"/';
-            $this->assertRegExp($pattern, $html, 'Pattern: ' . $pattern . "\nHTML:\n" . $html);
+            $this->assertMatchesRegularExpression($pattern, $html, 'Pattern: ' . $pattern . "\nHTML:\n" . $html);
         }
     }
 
@@ -3170,9 +3105,9 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->form->addDisplayGroup(array('foo', 'baz'), 'foobaz', array('legend' => 'Display Group'));
         $this->form->setView($this->getView());
         $html = $this->html = $this->form->render();
-        $this->assertRegExp('/<fieldset/', $html);
+        $this->assertMatchesRegularExpression('/<fieldset/', $html);
         $this->assertStringContainsString('</fieldset>', $html);
-        $this->assertRegExp('#<legend>Display Group</legend>#', $html, $html);
+        $this->assertMatchesRegularExpression('#<legend>Display Group</legend>#', $html, $html);
         $dom = new DOMDocument();
         $dom->loadHTML($html);
         $fieldsets = $dom->getElementsByTagName('fieldset');
@@ -3323,8 +3258,8 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
             $this->fail('Hidden elements should be grouped');
         }
         foreach (array('first', 'second', 'third') as $which) {
-            $this->assertRegExp('#<input[^]*name="' . $which . '"#', $matches[0]);
-            $this->assertRegExp('#<input[^]*value="' . $which . ' value"#', $matches[0]);
+            $this->assertMatchesRegularExpression('#<input[^]*name="' . $which . '"#', $matches[0]);
+            $this->assertMatchesRegularExpression('#<input[^]*value="' . $which . ' value"#', $matches[0]);
         }
     }
 
@@ -3606,8 +3541,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanSetAllElementDecoratorsAtOnce()
     {
-        $this->_checkZf2794();
-
         $this->setupElements();
         $this->form->setElementDecorators(array(
             array('ViewHelper'),
@@ -3649,7 +3582,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
             $decorator,
         ));
         $html = $this->form->render($this->getView());
-        $this->assertRegExp('#<tr><td>Foo</td><td>.*?<input[^>]+>.*?</td><td>sample description</td></tr>#s', $html, $html);
+        $this->assertMatchesRegularExpression('#<tr><td>Foo</td><td>.*?<input[^>]+>.*?</td><td>sample description</td></tr>#s', $html, $html);
     }
 
     /**
@@ -3657,8 +3590,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
      */
     public function testShouldAllowSpecifyingSpecificElementsToDecorate()
     {
-        $this->_checkZf2794();
-
         $this->setupElements();
         $this->form->setElementDecorators(
             array(
@@ -3692,8 +3623,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testShouldAllowSpecifyingListOfElementsNotToDecorate()
     {
-        $this->_checkZf2794();
-
         $this->setupElements();
         $this->form->setElementDecorators(
             array(
@@ -3730,8 +3659,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanSetAllElementFiltersAtOnce()
     {
-        $this->_checkZf2794();
-
         $this->setupElements();
         $this->form->setElementFilters(array(
             'Alnum',
@@ -3771,8 +3698,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCustomGlobalElementPrefixPathUsedInNewlyCreatedElements()
     {
-        $this->_checkZf2794();
-
         $this->form->addElementPrefixPath('My_Decorator', dirname(__FILE__) . '/_files/decorators', 'decorator');
         $this->form->addElement('text', 'prefixTest');
         $element = $this->form->prefixTest;
@@ -3855,8 +3780,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanSetAllDisplayGroupDecoratorsAtOnce()
     {
-        $this->_checkZf2794();
-
         $this->setupDisplayGroups();
         $this->form->setDisplayGroupDecorators(array(
             array('Callback', array('callback' => 'strip_tags')),
@@ -3901,8 +3824,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testCanSetAllSubFormDecoratorsAtOnce()
     {
-        $this->_checkZf2794();
-
         $this->setupSubForm();
         $this->form->setSubFormDecorators(array(
             array('Callback', array('callback' => 'strip_tags')),
@@ -4090,7 +4011,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
         $html = $this->form->render($this->getView());
         $this->assertNotEmpty($html);
-        $this->assertRegExp('#<form[^>]+enctype="multipart/form-data"#', $html);
+        $this->assertMatchesRegularExpression('#<form[^>]+enctype="multipart/form-data"#', $html);
     }
 
     /**
@@ -4106,7 +4027,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
         $this->assertStringContainsString('id="txt"', $html);
         $this->assertStringContainsString('name="txt"', $html);
-        $this->assertRegExp('#<form[^>]+enctype="multipart/form-data"#', $html, $html);
+        $this->assertMatchesRegularExpression('#<form[^>]+enctype="multipart/form-data"#', $html, $html);
     }
 
     /**
@@ -4121,7 +4042,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
         $this->assertStringContainsString('id="txt"', $html);
         $this->assertStringContainsString('name="txt"', $html);
-        $this->assertRegExp('#<form[^>]+enctype="multipart/form-data"#', $html, $html);
+        $this->assertMatchesRegularExpression('#<form[^>]+enctype="multipart/form-data"#', $html, $html);
     }
 
     /**
@@ -4505,19 +4426,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
     }
 
     /**
-     * Used by test methods susceptible to ZF-2794, marks a test as incomplete
-     *
-     * @link   http://framework.zend.com/issues/browse/ZF-2794
-     * @return void
-     */
-    protected function _checkZf2794()
-    {
-        if (strtolower(substr(PHP_OS, 0, 3)) == 'win' && version_compare(PHP_VERSION, '5.1.4', '=')) {
-            $this->markTestIncomplete('Error occurs for PHP 5.1.4 on Windows');
-        }
-    }
-
-    /**
      * Prove the fluent interface on Zend_Form::loadDefaultDecorators
      *
      * @link http://framework.zend.com/issues/browse/ZF-9913
@@ -4709,10 +4617,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
      */
     public function testAddingPrefixPathsWithBackslashWillLoadNamespacedPlugins()
     {
-        if (version_compare(PHP_VERSION, '5.3.0', '<')) {
-            $this->markTestSkipped(__CLASS__ . '::' . __METHOD__ . ' requires PHP 5.3.0 or greater');
-            return;
-        }
         $form = new Zend_Form();
         $form->addPrefixPath('Zf\Foo', 'Zf/Foo');
         foreach (array('element', 'decorator') as $type) {

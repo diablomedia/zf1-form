@@ -120,7 +120,7 @@ class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
     {
         $this->testGetHashReturnsHashValue();
         $this->assertEquals(32, strlen($this->hash));
-        $this->assertRegExp('/^[a-f0-9]{32}$/', $this->hash);
+        $this->assertMatchesRegularExpression('/^[a-f0-9]{32}$/', $this->hash);
     }
 
     public function testLabelIsNull()
@@ -144,8 +144,6 @@ class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
 
     public function testValidatorTokenReceivesSessionHashWhenPresent()
     {
-        $this->_checkZf2794();
-
         $session       = $this->element->getSession();
         $session->hash = $this->element->getHash();
         $element       = new Zend_Form_Element_Hash('foo', array('session' => $session));
@@ -173,7 +171,7 @@ class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
     public function testHiddenInputRenderedByDefault()
     {
         $html = $this->element->render($this->getView());
-        $this->assertRegExp('/<input[^>]*?type="hidden"/', $html, $html);
+        $this->assertMatchesRegularExpression('/<input[^>]*?type="hidden"/', $html, $html);
     }
 
     /**
@@ -184,19 +182,6 @@ class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
         $this->element->setView($this->getView());
         $html = $this->element->renderViewHelper();
         $this->assertStringContainsString($this->element->getHash(), $html, 'Html is: ' . $html);
-    }
-
-    /**
-     * Used by test methods susceptible to ZF-2794, marks a test as incomplete
-     *
-     * @link   http://framework.zend.com/issues/browse/ZF-2794
-     * @return void
-     */
-    protected function _checkZf2794()
-    {
-        if (strtolower(substr(PHP_OS, 0, 3)) == 'win' && version_compare(PHP_VERSION, '5.1.4', '=')) {
-            $this->markTestIncomplete('Error occurs for PHP 5.1.4 on Windows');
-        }
     }
 }
 
