@@ -2112,11 +2112,13 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      * element (in this case, 'baz').
      *
      * @param  array $value Array to walk
-     * @param  string $arrayPath Array notation path of the part to extract
+     * @param  string|null $arrayPath Array notation path of the part to extract
      * @return string
      */
     protected function _dissolveArrayValue($value, $arrayPath)
     {
+        $arrayPath = $arrayPath ?? '';
+
         // As long as we have more levels
         while ($arrayPos = strpos($arrayPath, '[')) {
             // Get the next key in the path
