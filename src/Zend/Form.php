@@ -881,7 +881,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      *
      * Places name as subitem of array and/or appends brackets.
      *
-     * @return string
+     * @return string|null
      */
     public function getFullyQualifiedName()
     {
@@ -899,7 +899,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
             return $id;
         }
 
-        $id = $this->getFullyQualifiedName();
+        $id = $this->getFullyQualifiedName() ?? '';
 
         // Bail early if no array notation detected
         if (!strstr($id, '[')) {
