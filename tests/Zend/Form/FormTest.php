@@ -31,6 +31,10 @@
  */
 class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 {
+    protected $elementValues;
+    protected $error;
+    protected $html;
+
     /**
      * @var Zend_Form
      */
@@ -212,9 +216,9 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($this->form->getDecorator('form'));
 
         $decorator = $this->form->getDecorator('label');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Label);
+        $this->assertInstanceOf(Zend_Form_Decorator_Label::class, $decorator);
         $decorator = $this->form->getDecorator('errors');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Errors);
+        $this->assertInstanceOf(Zend_Form_Decorator_Errors::class, $decorator);
     }
 
     public function testSetOptionsSetsArrayOfArrayDecorators()
@@ -228,12 +232,12 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($this->form->getDecorator('form'));
 
         $decorator = $this->form->getDecorator('label');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Label);
+        $this->assertInstanceOf(Zend_Form_Decorator_Label::class, $decorator);
         $options = $decorator->getOptions();
         $this->assertEquals('mylabel', $options['id']);
 
         $decorator = $this->form->getDecorator('errors');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Errors);
+        $this->assertInstanceOf(Zend_Form_Decorator_Errors::class, $decorator);
         $options = $decorator->getOptions();
         $this->assertEquals('errors', $options['id']);
     }
@@ -255,12 +259,12 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($this->form->getDecorator('form'));
 
         $decorator = $this->form->getDecorator('label');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Label);
+        $this->assertInstanceOf(Zend_Form_Decorator_Label::class, $decorator);
         $options = $decorator->getOptions();
         $this->assertEquals('mylabel', $options['id']);
 
         $decorator = $this->form->getDecorator('errors');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Errors);
+        $this->assertInstanceOf(Zend_Form_Decorator_Errors::class, $decorator);
         $options = $decorator->getOptions();
         $this->assertEquals('errors', $options['id']);
     }
@@ -634,7 +638,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
     public function testGetPluginLoaderRetrievesDefaultDecoratorPluginLoader()
     {
         $loader = $this->form->getPluginLoader('decorator');
-        $this->assertTrue($loader instanceof Zend_Loader_PluginLoader);
+        $this->assertInstanceOf(Zend_Loader_PluginLoader::class, $loader);
         $paths = $loader->getPaths('Zend_Form_Decorator');
         $this->assertIsArray($paths, var_export($loader, 1));
         $this->assertTrue(0 < count($paths));
@@ -735,7 +739,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
     public function testGetPluginLoaderRetrievesDefaultElementPluginLoader()
     {
         $loader = $this->form->getPluginLoader('element');
-        $this->assertTrue($loader instanceof Zend_Loader_PluginLoader);
+        $this->assertInstanceOf(Zend_Loader_PluginLoader::class, $loader);
         $paths = $loader->getPaths('Zend_Form_Element');
         $this->assertIsArray($paths, var_export($loader, 1));
         $this->assertTrue(0 < count($paths));
@@ -795,8 +799,8 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
     {
         $this->form->addElement('text', 'foo');
         $element = $this->form->getElement('foo');
-        $this->assertTrue($element instanceof Zend_Form_Element);
-        $this->assertTrue($element instanceof Zend_Form_Element_Text);
+        $this->assertInstanceOf(Zend_Form_Element::class, $element);
+        $this->assertInstanceOf(Zend_Form_Element_Text::class, $element);
         $this->assertEquals('foo', $element->getName());
     }
 
@@ -813,13 +817,13 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
     public function testCreateElementReturnsNewElement()
     {
         $element = $this->form->createElement('text', 'foo');
-        $this->assertTrue($element instanceof Zend_Form_Element);
+        $this->assertInstanceOf(Zend_Form_Element::class, $element);
     }
 
     public function testCreateElementDoesNotAttachElementToForm()
     {
         $element = $this->form->createElement('text', 'foo');
-        $this->assertTrue($element instanceof Zend_Form_Element);
+        $this->assertInstanceOf(Zend_Form_Element::class, $element);
         $this->assertNull($this->form->foo);
     }
 
@@ -835,14 +839,14 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $names    = array('foo', 'bar', 'baz', 'bat');
         $this->assertEquals($names, array_keys($elements));
         $foo = $elements['foo'];
-        $this->assertTrue($foo instanceof Zend_Form_Element_Text);
+        $this->assertInstanceOf(Zend_Form_Element_Text::class, $foo);
         $bar = $elements['bar'];
-        $this->assertTrue($bar instanceof Zend_Form_Element_Text);
+        $this->assertInstanceOf(Zend_Form_Element_Text::class, $bar);
         $baz = $elements['baz'];
-        $this->assertTrue($baz instanceof Zend_Form_Element_Text);
+        $this->assertInstanceOf(Zend_Form_Element_Text::class, $baz);
         $this->assertEquals('bar', $baz->foo, var_export($baz->getAttribs(), 1));
         $bat = $elements['bat'];
-        $this->assertTrue($bat instanceof Zend_Form_Element_Text);
+        $this->assertInstanceOf(Zend_Form_Element_Text::class, $bat);
     }
 
     public function testSetElementsOverwritesExistingElements()
@@ -989,7 +993,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->form->addElement('text', 'foo');
         $this->assertTrue(isset($this->form->foo));
         $element = $this->form->foo;
-        $this->assertTrue($element instanceof Zend_Form_Element);
+        $this->assertInstanceOf(Zend_Form_Element::class, $element);
         unset($this->form->foo);
         $this->assertFalse(isset($this->form->foo));
 
@@ -1829,7 +1833,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->testCanAddAndRetrieveMultipleElements();
         $this->form->addDisplayGroup(array('bar', 'bat'), 'barbat');
         $group = $this->form->getDisplayGroup('barbat');
-        $this->assertTrue($group instanceof Zend_Form_DisplayGroup);
+        $this->assertInstanceOf(Zend_Form_DisplayGroup::class, $group);
         $elements = $group->getElements();
         $expected = array('bar' => $this->form->bar, 'bat' => $this->form->bat);
         $this->assertEquals($expected, $elements);
@@ -1858,7 +1862,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
             'foobaz' => array('baz' => $this->form->baz, 'foo' => $this->form->foo),
         );
         foreach ($groups as $group) {
-            $this->assertTrue($group instanceof Zend_Form_DisplayGroup);
+            $this->assertInstanceOf(Zend_Form_DisplayGroup::class, $group);
         }
         $this->assertEquals($expected['barbat'], $groups['barbat']->getElements());
         $this->assertEquals($expected['foobaz'], $groups['foobaz']->getElements());
@@ -1932,7 +1936,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->setupElements();
         $this->form->addDisplayGroup(array('foo', 'bar'), 'foobar');
         $displayGroup = $this->form->getDisplayGroup('foobar');
-        $this->assertTrue($displayGroup instanceof Zend_Form_FormTest_DisplayGroup);
+        $this->assertInstanceOf(Zend_Form_FormTest_DisplayGroup::class, $displayGroup);
     }
 
     public function testCanPassDisplayGroupClassWhenAddingDisplayGroup()
@@ -1950,7 +1954,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->testCanAddAndRetrieveMultipleElements();
         $this->form->addDisplayGroup(array('bar', 'bat'), 'barbat', array('disableLoadDefaultDecorators' => true));
         $group = $this->form->getDisplayGroup('barbat');
-        $this->assertTrue($group instanceof Zend_Form_DisplayGroup);
+        $this->assertInstanceOf(Zend_Form_DisplayGroup::class, $group);
         $decorators = $group->getDecorators();
         $this->assertIsArray($decorators);
         $this->assertEmpty($decorators);
@@ -2912,7 +2916,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
     public function testFormDecoratorRegisteredByDefault()
     {
         $decorator = $this->form->getDecorator('form');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Form);
+        $this->assertInstanceOf(Zend_Form_Decorator_Form::class, $decorator);
     }
 
     public function testCanDisableRegisteringFormDecoratorsDuringInitialization()
@@ -2929,7 +2933,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
         $this->form->addDecorator('viewHelper');
         $decorator = $this->form->getDecorator('viewHelper');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_ViewHelper);
+        $this->assertInstanceOf(Zend_Form_Decorator_ViewHelper::class, $decorator);
     }
 
     public function testNotCanRetrieveSingleDecoratorRegisteredAsStringUsingClassName()
@@ -2971,7 +2975,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         ));
 
         $viewHelper = $this->form->getDecorator('viewHelper');
-        $this->assertTrue($viewHelper instanceof Zend_Form_Decorator_ViewHelper);
+        $this->assertInstanceOf(Zend_Form_Decorator_ViewHelper::class, $viewHelper);
         $decorator = $this->form->getDecorator('errors');
         $this->assertSame($testDecorator, $decorator);
     }
@@ -3022,11 +3026,11 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
             array('decorator' => array('FooBar' => 'HtmlTag'), 'options' => array('tag' => 'dd')),
         ));
         $decorator = $this->form->getDecorator('FooBar');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_HtmlTag);
+        $this->assertInstanceOf(Zend_Form_Decorator_HtmlTag::class, $decorator);
         $this->assertEquals('dd', $decorator->getOption('tag'));
 
         $decorator = $this->form->getDecorator('HtmlTag');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_HtmlTag);
+        $this->assertInstanceOf(Zend_Form_Decorator_HtmlTag::class, $decorator);
         $this->assertEquals('div', $decorator->getOption('tag'));
     }
 
@@ -3356,7 +3360,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $received = array();
         foreach ($this->form as $key => $value) {
             $received[] = $key;
-            $this->assertTrue($value instanceof Zend_Form_Element);
+            $this->assertInstanceOf(Zend_Form_Element::class, $value);
         }
         $this->assertSame($expected, $received);
     }
@@ -3371,7 +3375,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $received = array();
         foreach ($this->form as $key => $value) {
             $received[] = $key;
-            $this->assertTrue($value instanceof Zend_Form_Element);
+            $this->assertInstanceOf(Zend_Form_Element::class, $value);
         }
         $this->assertSame($expected, $received);
     }
@@ -3551,11 +3555,11 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
             $this->assertFalse($element->getDecorator('Errors'));
             $this->assertFalse($element->getDecorator('HtmlTag'));
             $decorator = $element->getDecorator('ViewHelper');
-            $this->assertTrue($decorator instanceof Zend_Form_Decorator_ViewHelper);
+            $this->assertInstanceOf(Zend_Form_Decorator_ViewHelper::class, $decorator);
             $decorator = $element->getDecorator('Label');
-            $this->assertTrue($decorator instanceof Zend_Form_Decorator_Label);
+            $this->assertInstanceOf(Zend_Form_Decorator_Label::class, $decorator);
             $decorator = $element->getDecorator('Fieldset');
-            $this->assertTrue($decorator instanceof Zend_Form_Decorator_Fieldset);
+            $this->assertInstanceOf(Zend_Form_Decorator_Fieldset::class, $decorator);
         }
     }
 
@@ -3608,11 +3612,11 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($element->getDecorator('Label'));
         $this->assertFalse($element->getDecorator('HtmlTag'));
         $decorator = $element->getDecorator('Description');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Description);
+        $this->assertInstanceOf(Zend_Form_Decorator_Description::class, $decorator);
         $decorator = $element->getDecorator('Form');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Form);
+        $this->assertInstanceOf(Zend_Form_Decorator_Form::class, $decorator);
         $decorator = $element->getDecorator('Fieldset');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Fieldset);
+        $this->assertInstanceOf(Zend_Form_Decorator_Fieldset::class, $decorator);
 
         foreach (array('foo', 'baz') as $name) {
             $element = $this->form->$name;
@@ -3643,11 +3647,11 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($element->getDecorator('Label'));
         $this->assertFalse($element->getDecorator('HtmlTag'));
         $decorator = $element->getDecorator('Description');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Description);
+        $this->assertInstanceOf(Zend_Form_Decorator_Description::class, $decorator);
         $decorator = $element->getDecorator('Form');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Form);
+        $this->assertInstanceOf(Zend_Form_Decorator_Form::class, $decorator);
         $decorator = $element->getDecorator('Fieldset');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Fieldset);
+        $this->assertInstanceOf(Zend_Form_Decorator_Fieldset::class, $decorator);
 
         foreach (array('foo', 'baz') as $name) {
             $element = $this->form->$name;
@@ -3666,9 +3670,9 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         ));
         foreach ($this->form->getElements() as $element) {
             $filter = $element->getFilter('Alnum');
-            $this->assertTrue($filter instanceof Zend_Filter_Alnum);
+            $this->assertInstanceOf(Zend_Filter_Alnum::class, $filter);
             $filter = $element->getFilter('StringToLower');
-            $this->assertTrue($filter instanceof Zend_Filter_StringToLower);
+            $this->assertInstanceOf(Zend_Filter_StringToLower::class, $filter);
         }
     }
 
@@ -3702,7 +3706,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->form->addElement('text', 'prefixTest');
         $element = $this->form->prefixTest;
         $label   = $element->getDecorator('Label');
-        $this->assertTrue($label instanceof My_Decorator_Label, get_class($label));
+        $this->assertInstanceOf(My_Decorator_Label::class, $label, get_class($label));
     }
 
     /**
@@ -3791,7 +3795,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
             $this->assertFalse($element->getDecorator('DtDdWrapper'));
 
             $decorator = $element->getDecorator('Callback');
-            $this->assertTrue($decorator instanceof Zend_Form_Decorator_Callback);
+            $this->assertInstanceOf(Zend_Form_Decorator_Callback::class, $decorator);
         }
     }
 
@@ -3835,7 +3839,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
             $this->assertFalse($subForm->getDecorator('DtDdWrapper'));
 
             $decorator = $subForm->getDecorator('Callback');
-            $this->assertTrue($decorator instanceof Zend_Form_Decorator_Callback);
+            $this->assertInstanceOf(Zend_Form_Decorator_Callback::class, $decorator);
         }
     }
 

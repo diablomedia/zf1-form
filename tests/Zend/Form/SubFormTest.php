@@ -31,6 +31,8 @@
  */
 class Zend_Form_SubFormTest extends PHPUnit\Framework\TestCase
 {
+    protected $form;
+
     public function setUp(): void
     {
         Zend_Form::setDefaultTranslator(null);

@@ -88,7 +88,7 @@ class Zend_Form_Element_ButtonTest extends PHPUnit\Framework\TestCase
     public function testButtonElementUsesButtonHelperInViewHelperDecoratorByDefault()
     {
         $decorator = $this->element->getDecorator('viewHelper');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_ViewHelper);
+        $this->assertInstanceOf(Zend_Form_Decorator_ViewHelper::class, $decorator);
         $decorator->setElement($this->element);
         $helper = $decorator->getHelper();
         $this->assertEquals('formButton', $helper);

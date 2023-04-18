@@ -33,6 +33,8 @@
  */
 class Zend_Form_Element_NoteTest extends PHPUnit\Framework\TestCase
 {
+    protected $element;
+
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
@@ -67,7 +69,7 @@ class Zend_Form_Element_NoteTest extends PHPUnit\Framework\TestCase
     public function testNoteElementUsesNoteHelperInViewHelperDecoratorByDefault()
     {
         $decorator = $this->element->getDecorator('viewHelper');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_ViewHelper);
+        $this->assertInstanceOf(Zend_Form_Decorator_ViewHelper::class, $decorator);
 
         $decorator->setElement($this->element);
         $helper = $decorator->getHelper();

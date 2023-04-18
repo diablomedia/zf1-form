@@ -33,6 +33,8 @@
  */
 class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
 {
+    protected $element;
+
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
@@ -89,7 +91,7 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
     public function testMultiCheckboxElementUsesMultiCheckboxHelperInViewHelperDecoratorByDefault()
     {
         $decorator = $this->element->getDecorator('viewHelper');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_ViewHelper);
+        $this->assertInstanceOf(Zend_Form_Decorator_ViewHelper::class, $decorator);
         $decorator->setElement($this->element);
         $helper = $decorator->getHelper();
         $this->assertEquals('formMultiCheckbox', $helper);
@@ -213,7 +215,7 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($this->element->getValidator('InArray'));
         $this->element->isValid('test');
         $validator = $this->element->getValidator('InArray');
-        $this->assertTrue($validator instanceof Zend_Validate_InArray);
+        $this->assertInstanceOf(Zend_Validate_InArray::class, $validator);
     }
 
     public function testShouldNotValidateIfValueIsNotInArray()

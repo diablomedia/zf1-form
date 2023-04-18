@@ -33,6 +33,9 @@
  */
 class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
 {
+    protected $hash;
+    protected $element;
+
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
@@ -185,6 +188,7 @@ class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_Form_Element_HashTest_SessionContainer
 {
     protected static $_hash;

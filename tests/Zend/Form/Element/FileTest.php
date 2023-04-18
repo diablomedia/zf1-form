@@ -103,7 +103,7 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
     public function testElementShouldUseHttpTransferAdapterByDefault()
     {
         $adapter = $this->element->getTransferAdapter();
-        $this->assertTrue($adapter instanceof Zend_File_Transfer_Adapter_Http);
+        $this->assertInstanceOf(Zend_File_Transfer_Adapter_Http::class, $adapter);
     }
 
     public function testElementShouldAllowSpecifyingAdapterUsingConcreteInstance()
@@ -126,7 +126,7 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
     public function testShouldRegisterPluginLoaderWithFileTransferAdapterPathByDefault()
     {
         $loader = $this->element->getPluginLoader('transfer_adapter');
-        $this->assertTrue($loader instanceof Zend_Loader_PluginLoader_Interface);
+        $this->assertInstanceOf(Zend_Loader_PluginLoader_Interface::class, $loader);
         $paths = $loader->getPaths('Zend_File_Transfer_Adapter');
         $this->assertIsArray($paths);
     }
@@ -136,7 +136,7 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
         $this->element->addPrefixPath('Zend_Form_Element_FileTest_Adapter', dirname(__FILE__) . '/_files/TransferAdapter', 'transfer_adapter');
         $this->element->setTransferAdapter('Foo');
         $test = $this->element->getTransferAdapter();
-        $this->assertTrue($test instanceof Zend_Form_Element_FileTest_Adapter_Foo);
+        $this->assertInstanceOf(Zend_Form_Element_FileTest_Adapter_Foo::class, $test);
     }
 
     public function testValidatorAccessAndMutationShouldProxyToAdapter()
@@ -300,11 +300,11 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
         $this->element->setTranslator($translate);
 
         $adapter = $this->element->getTranslator();
-        $this->assertTrue($adapter instanceof Zend_Translate_Adapter_Array);
+        $this->assertInstanceOf(Zend_Translate_Adapter_Array::class, $adapter);
 
         $adapter = $this->element->getTransferAdapter();
         $adapter = $adapter->getTranslator();
-        $this->assertTrue($adapter instanceof Zend_Translate_Adapter_Array);
+        $this->assertInstanceOf(Zend_Translate_Adapter_Array::class, $adapter);
 
         $this->assertFalse($this->element->translatorIsDisabled());
         $this->element->setDisableTranslator($translate);
@@ -423,7 +423,7 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
     {
         $element    = new Zend_Form_Element_File('baz');
         $decorators = $element->getDecorator('Description');
-        $this->assertTrue($decorators instanceof Zend_Form_Decorator_Description);
+        $this->assertInstanceOf(Zend_Form_Decorator_Description::class, $decorators);
     }
 
     private function _convertIniToInteger($setting)
@@ -490,9 +490,8 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
         $test = $this->element->getTransferAdapter();
 
         $expectedType = 'Zend\Form\Element\FileTest\Adapter\Bar';
-        $this->assertTrue(
-            $test instanceof $expectedType
-        );
+        $this->assertInstanceOf(
+            $expectedType, $test);
     }
 
     /**

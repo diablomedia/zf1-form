@@ -31,6 +31,10 @@
  */
 class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 {
+    protected $error;
+    protected $group;
+    protected $loader;
+
     public function setUp(): void
     {
         Zend_Registry::_unsetInstance();
@@ -191,9 +195,9 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
     public function testDefaultDecoratorsRegistered()
     {
         $decorator = $this->group->getDecorator('FormElements');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_FormElements);
+        $this->assertInstanceOf(Zend_Form_Decorator_FormElements::class, $decorator);
         $decorator = $this->group->getDecorator('Fieldset');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Fieldset);
+        $this->assertInstanceOf(Zend_Form_Decorator_Fieldset::class, $decorator);
     }
 
     public function testCanDisableRegisteringDefaultDecoratorsDuringInitialization()
@@ -224,7 +228,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 
         $this->group->addDecorator('viewHelper');
         $decorator = $this->group->getDecorator('viewHelper');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_ViewHelper);
+        $this->assertInstanceOf(Zend_Form_Decorator_ViewHelper::class, $decorator);
     }
 
     public function testCanNotRetrieveSingleDecoratorRegisteredAsStringUsingClassName()
@@ -266,7 +270,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
         ));
 
         $viewHelper = $this->group->getDecorator('viewHelper');
-        $this->assertTrue($viewHelper instanceof Zend_Form_Decorator_ViewHelper);
+        $this->assertInstanceOf(Zend_Form_Decorator_ViewHelper::class, $viewHelper);
         $decorator = $this->group->getDecorator('HtmlTag');
         $this->assertSame($testDecorator, $decorator);
     }
@@ -313,11 +317,11 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
             array('decorator' => array('FooBar' => 'HtmlTag'), 'options' => array('tag' => 'dd')),
         ));
         $decorator = $this->group->getDecorator('FooBar');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_HtmlTag);
+        $this->assertInstanceOf(Zend_Form_Decorator_HtmlTag::class, $decorator);
         $this->assertEquals('dd', $decorator->getOption('tag'));
 
         $decorator = $this->group->getDecorator('HtmlTag');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_HtmlTag);
+        $this->assertInstanceOf(Zend_Form_Decorator_HtmlTag::class, $decorator);
         $this->assertEquals('fieldset', $decorator->getOption('tag'));
     }
 
@@ -455,7 +459,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
         $received = array();
         foreach ($this->group as $key => $element) {
             $received[] = $key;
-            $this->assertTrue($element instanceof Zend_Form_Element);
+            $this->assertInstanceOf(Zend_Form_Element::class, $element);
         }
         $this->assertSame($expected, $received);
     }
@@ -567,9 +571,9 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($this->group->getDecorator('group'));
 
         $decorator = $this->group->getDecorator('label');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Label);
+        $this->assertInstanceOf(Zend_Form_Decorator_Label::class, $decorator);
         $decorator = $this->group->getDecorator('form');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Form);
+        $this->assertInstanceOf(Zend_Form_Decorator_Form::class, $decorator);
     }
 
     public function testSetOptionsSetsArrayOfArrayDecorators()
@@ -583,12 +587,12 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($this->group->getDecorator('group'));
 
         $decorator = $this->group->getDecorator('label');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Label);
+        $this->assertInstanceOf(Zend_Form_Decorator_Label::class, $decorator);
         $options = $decorator->getOptions();
         $this->assertEquals('mylabel', $options['id']);
 
         $decorator = $this->group->getDecorator('form');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Form);
+        $this->assertInstanceOf(Zend_Form_Decorator_Form::class, $decorator);
         $options = $decorator->getOptions();
         $this->assertEquals('form', $options['id']);
     }
@@ -610,12 +614,12 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($this->group->getDecorator('group'));
 
         $decorator = $this->group->getDecorator('label');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Label);
+        $this->assertInstanceOf(Zend_Form_Decorator_Label::class, $decorator);
         $options = $decorator->getOptions();
         $this->assertEquals('mylabel', $options['id']);
 
         $decorator = $this->group->getDecorator('form');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Form);
+        $this->assertInstanceOf(Zend_Form_Decorator_Form::class, $decorator);
         $options = $decorator->getOptions();
         $this->assertEquals('form', $options['id']);
     }

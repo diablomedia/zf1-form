@@ -33,6 +33,8 @@
  */
 class Zend_Form_Element_ImageTest extends PHPUnit\Framework\TestCase
 {
+    protected $element;
+
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
@@ -67,7 +69,7 @@ class Zend_Form_Element_ImageTest extends PHPUnit\Framework\TestCase
     public function testImageElementUsesImageDecoratorByDefault()
     {
         $decorator = $this->element->getDecorator('Image');
-        $this->assertTrue($decorator instanceof Zend_Form_Decorator_Image);
+        $this->assertInstanceOf(Zend_Form_Decorator_Image::class, $decorator);
     }
 
     /**

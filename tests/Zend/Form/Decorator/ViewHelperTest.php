@@ -33,6 +33,8 @@
  */
 class Zend_Form_Decorator_ViewHelperTest extends PHPUnit\Framework\TestCase
 {
+    protected $decorator;
+
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
