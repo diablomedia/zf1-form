@@ -491,7 +491,9 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
 
         $expectedType = 'Zend\Form\Element\FileTest\Adapter\Bar';
         $this->assertInstanceOf(
-            $expectedType, $test);
+            $expectedType,
+            $test
+        );
     }
 
     /**
