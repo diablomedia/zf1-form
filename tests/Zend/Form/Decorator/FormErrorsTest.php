@@ -377,7 +377,7 @@ class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
         );
     }
 
-    public function markupOptionMethodsProvider()
+    public static function markupOptionMethodsProvider()
     {
         return array(
             array('IgnoreSubForms'),
