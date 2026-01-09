@@ -176,7 +176,7 @@ class Zend_Form_Decorator_FileTest extends PHPUnit\Framework\TestCase
     {
         if (!is_numeric($setting)) {
             $type    = strtoupper(substr($setting, -1));
-            $setting = (integer) substr($setting, 0, -1);
+            $setting = (int) substr($setting, 0, -1);
 
             switch ($type) {
                 case 'M':
@@ -192,7 +192,7 @@ class Zend_Form_Decorator_FileTest extends PHPUnit\Framework\TestCase
             }
         }
 
-        return (integer) $setting;
+        return (int) $setting;
     }
 }
 
