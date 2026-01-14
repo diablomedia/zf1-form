@@ -7,3 +7,7 @@ parameters:
         - %rootDir%/../../../vendor/*
     ignoreErrors:
         - '#Variable \$.+ might not be defined\.#'
+        -
+            message: '#Variable \$subordered in empty\(\) always exists and is always falsy\.#'
+            path: './src/Zend/Form.php'
+            count: 1
